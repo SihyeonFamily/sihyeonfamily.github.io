@@ -40,6 +40,9 @@ function enterInvitation() {
         overlay.classList.add("fade-out");
         document.body.classList.remove("scroll-locked");
 
+        // Trigger the elegant confetti/petal entrance effect
+        triggerEntranceConfetti();
+
         // Let it fade out completely before display: none
         setTimeout(() => {
             overlay.style.display = "none";
@@ -387,4 +390,202 @@ function openTmap() {
     const appUrl = `tmap://route?goalname=${encodeURIComponent(goalName)}&goalx=${lon}&goaly=${lat}`;
 
     window.location.href = appUrl;
+}
+
+// ==========================================
+// 10. ELEGANT ENTRANCE CONFETTI & PETAL EFFECT
+// ==========================================
+function triggerEntranceConfetti() {
+    const canvas = document.createElement("canvas");
+    canvas.className = "entrance-confetti-canvas";
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    let animationFrameId;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const particles = [];
+    const colors = {
+        pink: ["#FFF1F2", "#FFE4E6", "#FECDD3", "#FDA4AF", "#F472B6"], // Soft pinks
+        peach: ["#FFF7ED", "#FFEDD5", "#FED7AA", "#FDBA74", "#FB923C"], // Soft peaches
+        gold: ["#FEF3C7", "#FDE68A", "#FCD34D", "#FBBF24", "#F59E0B"], // Elegant golds
+        white: ["#FFFFFF", "#FAFAFA", "#F4F4F5"]
+    };
+
+    class Particle {
+        constructor(x, y, angle, speed, type) {
+            this.x = x;
+            this.y = y;
+            this.type = type; // 'petal', 'glitter', 'star'
+            
+            // Velocity
+            const rad = (angle * Math.PI) / 180;
+            this.vx = Math.cos(rad) * speed;
+            this.vy = -Math.sin(rad) * speed; // Shoot upwards
+            
+            this.gravity = 0.05 + Math.random() * 0.04;
+            this.wind = (Math.random() - 0.5) * 0.15;
+            
+            // Appearance
+            this.scale = 0.5 + Math.random() * 0.8;
+            this.opacity = 1;
+            this.fadeSpeed = 0.003 + Math.random() * 0.003;
+            
+            // Color
+            const colorGroups = [colors.pink, colors.peach, colors.gold, colors.white];
+            const group = colorGroups[Math.floor(Math.random() * colorGroups.length)];
+            this.color = group[Math.floor(Math.random() * group.length)];
+            
+            // Rotation & Wiggle
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = (Math.random() - 0.5) * 3;
+            this.wiggle = Math.random() * 100;
+            this.wiggleSpeed = 0.02 + Math.random() * 0.03;
+            
+            // Dimension ratio for 3D flip
+            this.flip = Math.random();
+            this.flipSpeed = 0.05 + Math.random() * 0.05;
+        }
+
+        update() {
+            this.vy += this.gravity;
+            this.vx += this.wind;
+            
+            // Lateral drift
+            this.x += this.vx + Math.sin(this.wiggle) * 0.5;
+            this.y += this.vy;
+            
+            this.wiggle += this.wiggleSpeed;
+            this.rotation += this.rotationSpeed;
+            this.flip += this.flipSpeed;
+            
+            // Start fading out when falling down or after some time
+            if (this.vy > 0) {
+                this.opacity -= this.fadeSpeed;
+            }
+        }
+
+        draw() {
+            if (this.opacity <= 0) return;
+            
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate((this.rotation * Math.PI) / 180);
+            ctx.scale(this.scale * Math.cos(this.flip), this.scale);
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = this.color;
+            
+            if (this.type === 'petal') {
+                // Draw elegant curved petal
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(8, -10, 12, -2, 4, 10);
+                ctx.bezierCurveTo(-4, 10, -12, -2, 0, 0);
+                ctx.fill();
+            } else if (this.type === 'star') {
+                // Draw tiny sparkling 4-point star
+                ctx.beginPath();
+                for (let i = 0; i < 4; i++) {
+                    ctx.lineTo(0, -6);
+                    ctx.quadraticCurveTo(0, 0, 6, 0);
+                    ctx.quadraticCurveTo(0, 0, 0, 6);
+                    ctx.quadraticCurveTo(0, 0, -6, 0);
+                    ctx.quadraticCurveTo(0, 0, 0, -6);
+                }
+                ctx.fill();
+            } else {
+                // Classic gold glitter rectangle
+                ctx.fillRect(-5, -3, 10, 6);
+            }
+            
+            ctx.restore();
+        }
+    }
+
+    // Spawn initial burst from left and right middle sides
+    const burstCount = 55;
+    for (let i = 0; i < burstCount; i++) {
+        // Left side popper
+        particles.push(new Particle(
+            -20, 
+            canvas.height * 0.5, 
+            35 + Math.random() * 30, // 35 to 65 deg
+            6 + Math.random() * 8, 
+            Math.random() > 0.4 ? 'petal' : (Math.random() > 0.5 ? 'glitter' : 'star')
+        ));
+        
+        // Right side popper
+        particles.push(new Particle(
+            canvas.width + 20, 
+            canvas.height * 0.5, 
+            115 + Math.random() * 30, // 115 to 145 deg
+            6 + Math.random() * 8, 
+            Math.random() > 0.4 ? 'petal' : (Math.random() > 0.5 ? 'glitter' : 'star')
+        ));
+    }
+
+    // Spawn some gentle falling petals from the top to continue the effect
+    let spawnTimer = 0;
+    const maxDuration = 9000; // Stop after 9 seconds
+    const startTime = Date.now();
+
+    function loop() {
+        const elapsed = Date.now() - startTime;
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Spawn additional particles from top during the first 5 seconds
+        if (elapsed < 5000) {
+            spawnTimer++;
+            if (spawnTimer % 6 === 0) {
+                particles.push(new Particle(
+                    Math.random() * canvas.width,
+                    -10,
+                    270 + (Math.random() - 0.5) * 40, // falling mainly down
+                    0.5 + Math.random() * 1.5,
+                    Math.random() > 0.5 ? 'petal' : 'glitter'
+                ));
+            }
+        }
+        
+        // Update and draw particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.update();
+            p.draw();
+            
+            // Remove faded out particles or offscreen particles
+            if (p.opacity <= 0 || p.y > canvas.height + 50 || p.x < -50 || p.x > canvas.width + 50) {
+                particles.splice(i, 1);
+            }
+        }
+        
+        // Keep animating if we have particles and haven't exceeded duration
+        if (particles.length > 0 && elapsed < maxDuration) {
+            animationFrameId = requestAnimationFrame(loop);
+        } else {
+            cleanup();
+        }
+    }
+
+    function cleanup() {
+        cancelAnimationFrame(animationFrameId);
+        window.removeEventListener("resize", resizeCanvas);
+        if (canvas.parentNode) {
+            canvas.parentNode.removeChild(canvas);
+        }
+    }
+
+    // Start animation
+    loop();
+    
+    // Safety auto-cleanup
+    setTimeout(cleanup, maxDuration + 1000);
 }
