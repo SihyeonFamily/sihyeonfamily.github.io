@@ -618,6 +618,10 @@ body {
     background-color: #FFFFFF;
 }
 
+#contacts-section {
+    background-color: var(--color-meadow-light);
+}
+
 /* SECTION 1: Cover Section */
 #cover-section {
     position: relative;
