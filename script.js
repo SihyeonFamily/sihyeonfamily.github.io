@@ -423,31 +423,31 @@ function triggerEntranceConfetti() {
             this.x = x;
             this.y = y;
             this.type = type; // 'petal', 'glitter', 'star'
-            
+
             // Velocity
             const rad = (angle * Math.PI) / 180;
             this.vx = Math.cos(rad) * speed;
             this.vy = -Math.sin(rad) * speed; // Shoot upwards
-            
+
             this.gravity = 0.05 + Math.random() * 0.04;
             this.wind = (Math.random() - 0.5) * 0.15;
-            
+
             // Appearance
             this.scale = 0.5 + Math.random() * 0.8;
             this.opacity = 1;
             this.fadeSpeed = 0.003 + Math.random() * 0.003;
-            
+
             // Color
             const colorGroups = [colors.pink, colors.peach, colors.gold, colors.white];
             const group = colorGroups[Math.floor(Math.random() * colorGroups.length)];
             this.color = group[Math.floor(Math.random() * group.length)];
-            
+
             // Rotation & Wiggle
             this.rotation = Math.random() * 360;
             this.rotationSpeed = (Math.random() - 0.5) * 3;
             this.wiggle = Math.random() * 100;
             this.wiggleSpeed = 0.02 + Math.random() * 0.03;
-            
+
             // Dimension ratio for 3D flip
             this.flip = Math.random();
             this.flipSpeed = 0.05 + Math.random() * 0.05;
@@ -456,15 +456,15 @@ function triggerEntranceConfetti() {
         update() {
             this.vy += this.gravity;
             this.vx += this.wind;
-            
+
             // Lateral drift
             this.x += this.vx + Math.sin(this.wiggle) * 0.5;
             this.y += this.vy;
-            
+
             this.wiggle += this.wiggleSpeed;
             this.rotation += this.rotationSpeed;
             this.flip += this.flipSpeed;
-            
+
             // Start fading out when falling down or after some time
             if (this.vy > 0) {
                 this.opacity -= this.fadeSpeed;
@@ -473,14 +473,14 @@ function triggerEntranceConfetti() {
 
         draw() {
             if (this.opacity <= 0) return;
-            
+
             ctx.save();
             ctx.translate(this.x, this.y);
             ctx.rotate((this.rotation * Math.PI) / 180);
             ctx.scale(this.scale * Math.cos(this.flip), this.scale);
             ctx.globalAlpha = this.opacity;
             ctx.fillStyle = this.color;
-            
+
             if (this.type === 'petal') {
                 // Draw elegant curved petal
                 ctx.beginPath();
@@ -503,7 +503,7 @@ function triggerEntranceConfetti() {
                 // Classic gold glitter rectangle
                 ctx.fillRect(-5, -3, 10, 6);
             }
-            
+
             ctx.restore();
         }
     }
@@ -513,19 +513,19 @@ function triggerEntranceConfetti() {
     for (let i = 0; i < burstCount; i++) {
         // Left side popper
         particles.push(new Particle(
-            -20, 
-            canvas.height * 0.5, 
+            -20,
+            canvas.height * 0.5,
             35 + Math.random() * 30, // 35 to 65 deg
-            6 + Math.random() * 8, 
+            6 + Math.random() * 8,
             Math.random() > 0.4 ? 'petal' : (Math.random() > 0.5 ? 'glitter' : 'star')
         ));
-        
+
         // Right side popper
         particles.push(new Particle(
-            canvas.width + 20, 
-            canvas.height * 0.5, 
+            canvas.width + 20,
+            canvas.height * 0.5,
             115 + Math.random() * 30, // 115 to 145 deg
-            6 + Math.random() * 8, 
+            6 + Math.random() * 8,
             Math.random() > 0.4 ? 'petal' : (Math.random() > 0.5 ? 'glitter' : 'star')
         ));
     }
@@ -537,10 +537,10 @@ function triggerEntranceConfetti() {
 
     function loop() {
         const elapsed = Date.now() - startTime;
-        
+
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         // Spawn additional particles from top during the first 5 seconds
         if (elapsed < 5000) {
             spawnTimer++;
@@ -554,19 +554,19 @@ function triggerEntranceConfetti() {
                 ));
             }
         }
-        
+
         // Update and draw particles
         for (let i = particles.length - 1; i >= 0; i--) {
             const p = particles[i];
             p.update();
             p.draw();
-            
+
             // Remove faded out particles or offscreen particles
             if (p.opacity <= 0 || p.y > canvas.height + 50 || p.x < -50 || p.x > canvas.width + 50) {
                 particles.splice(i, 1);
             }
         }
-        
+
         // Keep animating if we have particles and haven't exceeded duration
         if (particles.length > 0 && elapsed < maxDuration) {
             animationFrameId = requestAnimationFrame(loop);
@@ -585,7 +585,7 @@ function triggerEntranceConfetti() {
 
     // Start animation
     loop();
-    
+
     // Safety auto-cleanup
     setTimeout(cleanup, maxDuration + 1000);
 }
