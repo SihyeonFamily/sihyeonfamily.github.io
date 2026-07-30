@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>시현이의 첫 번째 생일 초대장 👶</title>
+    <title>시현이의 첫번째 생일 초대장</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="사랑스러운 시현이의 첫 돌잔치에 소중한 분들을 초대합니다.">
@@ -25,53 +25,7 @@
 </head>
 
 <body>
-
-    <!-- SECTION: Welcome Intro Overlay -->
-    <div id="intro-overlay" class="intro-overlay">
-        <!-- Playful Garland Decoration -->
-        <div class="intro-garland">
-            <div class="garland-flag flag-red"></div>
-            <div class="garland-flag flag-orange"></div>
-            <div class="garland-flag flag-yellow"></div>
-            <div class="garland-flag flag-green"></div>
-            <div class="garland-flag flag-blue"></div>
-            <div class="garland-flag flag-orange2"></div>
-            <div class="garland-flag flag-yellow2"></div>
-        </div>
-
-        <!-- Dynamic Clouds -->
-        <div class="intro-clouds">
-            <div class="cloud cloud-1"></div>
-            <div class="cloud cloud-2"></div>
-        </div>
-
-        <div class="intro-content">
-            <div class="intro-baby-container">
-                <div class="baby-avatar">
-                    <span class="baby-emoji">👶</span>
-                    <div class="baby-glow"></div>
-                </div>
-                <div class="speech-bubble">
-                    <p class="speech-greet">안녕하세요!</p>
-                    <p class="speech-text">저 장시현의 첫번째 생일을 맞이하여</p>
-                    <p class="speech-text">여러분을 파티에 초대하고 싶습니다!</p>
-                    <p class="speech-text">귀한 발걸음해주시면 감사드리겠습니다💕</p>
-                </div>
-            </div>
-            <button class="enter-btn" onclick="enterInvitation()">
-                생일파티 입장하기
-            </button>
-        </div>
-
-        <!-- Meadow Hills decoration at bottom -->
-        <div class="intro-meadow">
-            <div class="hill hill-left"></div>
-            <div class="hill hill-right"></div>
-        </div>
-    </div>
-
     <main class="invitation-container">
-
         <!-- SECTION 1: Cover Page -->
         <section id="cover-section" class="invitation-section scroll-fade">
             <!-- Garland Decoration for Cover -->
@@ -84,7 +38,7 @@
             </div>
             <div class="badge-dday" id="dday-badge">D-99</div>
             <h2 class="cover-subtitle">SIHYEON'S 1ST BIRTHDAY</h2>
-            <h1 class="cover-title">시현이의 첫 돌잔치</h1>
+            <h1 class="cover-title">시현이의 첫번째 생일</h1>
             <div class="cover-image-container">
                 <img src="assets/cover.jpg" alt="시현이 돌잔치 커버 이미지" class="cover-image">
             </div>
@@ -121,6 +75,45 @@
             </div>
         </section>
 
+        <!-- SECTION 3: Location / Map -->
+        <section id="location-section" class="invitation-section scroll-fade">
+            <h3 class="section-title">오시는 길</h3>
+
+            <div class="venue-info">
+                <h4 class="venue-name">밀리토피아호텔 바이마린 다이닝 100</h4>
+                <p class="venue-address" id="venue-address-text">경기도 성남시 수정구 위례대로 83</p>
+                <button class="btn-copy" onclick="copyText('venue-address-text', '주소가 복사되었습니다!')">
+                    주소 복사하기
+                </button>
+            </div>
+
+            <!-- Interactive Map / Map Links -->
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=경기도+성남시+수정구+위례대로+83&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="map-links">
+                <a href="https://map.kakao.com/?q=밀리토피아호텔+바이마린" target="_blank" rel="noopener noreferrer"
+                    class="map-btn kakao">카카오맵</a>
+                <a href="https://map.naver.com/v5/search/밀리토피아호텔+바이마린+다이닝100" target="_blank" rel="noopener noreferrer"
+                    class="map-btn naver">네이버 지도</a>
+                <a href="#" onclick="openTmap(); return false;" class="map-btn tmap">티맵</a>
+            </div>
+
+            <div class="traffic-info">
+                <div class="traffic-row">
+                    <span class="traffic-type subway">지하철</span>
+                    <p class="traffic-desc">8호선 남위례역 3번 출구 도보 8~10분 소요</p>
+                </div>
+                <div class="traffic-row">
+                    <span class="traffic-type bus">버스</span>
+                    <p class="traffic-desc">복정역 2번 출구에서 50번, 331번 버스 탑승 또는 장지역 4번 출구에서 345번 버스 탑승 후 밀리토피아호텔 정류장 하차</p>
+                </div>
+            </div>
+        </section>
+
+
         <!-- SECTION: Growth Timeline -->
         <section id="timeline-section" class="invitation-section scroll-fade">
             <div class="section-divider">
@@ -135,7 +128,7 @@
 
             <div class="timeline-container">
                 <div class="timeline-line"></div>
-                
+
                 <!-- 50일 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
@@ -161,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 150일 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
@@ -225,44 +218,6 @@
                             <p>생후 350일의 소중한 순간</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: Location / Map -->
-        <section id="location-section" class="invitation-section scroll-fade">
-            <h3 class="section-title">오시는 길</h3>
-
-            <div class="venue-info">
-                <h4 class="venue-name">밀리토피아호텔 바이마린 다이닝 100</h4>
-                <p class="venue-address" id="venue-address-text">경기도 성남시 수정구 위례대로 83</p>
-                <button class="btn-copy" onclick="copyText('venue-address-text', '주소가 복사되었습니다!')">
-                    주소 복사하기
-                </button>
-            </div>
-
-            <!-- Interactive Map / Map Links -->
-            <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=경기도+성남시+수정구+위례대로+83&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-
-            <div class="map-links">
-                <a href="https://map.kakao.com/?q=밀리토피아호텔+바이마린" target="_blank" rel="noopener noreferrer"
-                    class="map-btn kakao">카카오맵</a>
-                <a href="https://map.naver.com/v5/search/밀리토피아호텔+바이마린+다이닝100" target="_blank" rel="noopener noreferrer"
-                    class="map-btn naver">네이버 지도</a>
-                <a href="#" onclick="openTmap(); return false;" class="map-btn tmap">티맵</a>
-            </div>
-
-            <div class="traffic-info">
-                <div class="traffic-row">
-                    <span class="traffic-type subway">지하철</span>
-                    <p class="traffic-desc">8호선 남위례역 3번 출구 도보 8~10분 소요</p>
-                </div>
-                <div class="traffic-row">
-                    <span class="traffic-type bus">버스</span>
-                    <p class="traffic-desc">복정역 2번 출구에서 50번, 331번 버스 탑승 또는 장지역 4번 출구에서 345번 버스 탑승 후 밀리토피아호텔 정류장 하차</p>
                 </div>
             </div>
         </section>
@@ -333,8 +288,10 @@
                 </svg>
             </div>
             <h3 class="section-title">축하 연락처</h3>
-            <p class="contacts-subtitle" style="font-size: 0.95rem; color: var(--text-sub); margin-top: -20px; margin-bottom: 30px; text-align: center;">축하의 마음을 담아 연락해 보세요.</p>
-            
+            <p class="contacts-subtitle"
+                style="font-size: 0.95rem; color: var(--text-sub); margin-top: -20px; margin-bottom: 30px; text-align: center;">
+                축하의 마음을 담아 연락해 보세요.</p>
+
             <div class="parent-contacts" style="max-width: 400px; margin: 0 auto;">
                 <div class="parent-card">
                     <span class="parent-role">아빠</span>
