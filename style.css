@@ -591,15 +591,15 @@ body {
 
 /* Section Theme Colors override */
 #cover-section {
-    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--color-meadow-light) 0%, #FFFFFF 100%);
 }
 
 #intro-section {
-    background-color: var(--color-meadow-light);
+    background-color: #FFFFFF;
 }
 
 #countdown-section {
-    background-color: var(--color-sky-light);
+    background-color: var(--color-meadow-light);
 }
 
 #gallery-section {
@@ -607,19 +607,11 @@ body {
 }
 
 #location-section {
-    background-color: var(--color-meadow-light);
-}
-
-#rsvp-section {
-    background-color: var(--color-sky-light);
-}
-
-#guestbook-section {
-    background-color: #FFFFFF;
+    background: linear-gradient(180deg, var(--color-meadow-light) 0%, #FFFFFF 100%);
 }
 
 #contacts-section {
-    background-color: var(--color-meadow-light);
+    background-color: var(#FFFFFF);
 }
 
 /* SECTION 1: Cover Section */
@@ -901,7 +893,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    background-color: #F8F5F0;
+    background-color: #FFFFFF;
     padding: 20px;
     border-radius: 12px;
     border: 1px solid var(--color-border);
@@ -925,7 +917,7 @@ body {
 }
 
 .traffic-type.subway {
-    background-color: var(--color-sage);
+    background-color: var(--color-accent);
 }
 
 .traffic-type.bus {
@@ -1525,15 +1517,19 @@ body {
     .timeline-item.left {
         padding-right: 12px;
     }
+
     .timeline-item.right {
         padding-left: 12px;
     }
+
     .timeline-text {
         padding: 8px;
     }
+
     .timeline-text h4 {
         font-size: 0.9rem;
     }
+
     .timeline-text p {
         font-size: 0.7rem;
     }
