@@ -591,7 +591,7 @@ body {
 
 /* Section Theme Colors override */
 #cover-section {
-    background: linear-gradient(180deg, var(--color-meadow-light) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
 }
 
 #intro-section {
@@ -599,7 +599,7 @@ body {
 }
 
 #countdown-section {
-    background-color: var(--color-meadow-light);
+    background-color: var(--color-sky-light);
 }
 
 #gallery-section {
@@ -607,7 +607,7 @@ body {
 }
 
 #location-section {
-    background: linear-gradient(180deg, var(--color-meadow-light) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
 }
 
 #contacts-section {
