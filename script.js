@@ -18,16 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("scroll-locked");
     }
 
-    // 1. Start D-day countdown
+    // 1. Setup dynamic scroll-fade elements
+    setupScrollFadeElements();
+
+    // 2. Start D-day countdown
     initCountdown();
 
-    // 2. Setup Scroll Animations
+    // 3. Setup Scroll Animations
     initScrollAnimations();
 
-    // 3. Render Guestbook Messages
+    // 4. Render Guestbook Messages
     renderGuestbook();
 
-    // 4. Set D-day badge value on cover
+    // 5. Set D-day badge value on cover
     updateDDayBadge();
 });
 
@@ -111,15 +114,15 @@ function initScrollAnimations() {
 
     const observerOptions = {
         root: null,
-        rootMargin: "0px",
-        threshold: 0.1
+        rootMargin: "-8% 0px -8% 0px", // Triggers when the section is slightly inside the viewport
+        threshold: 0.05
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Animates only once
+                observer.unobserve(entry.target); // Keep visible permanently once revealed
             }
         });
     }, observerOptions);
@@ -588,4 +591,42 @@ function triggerEntranceConfetti() {
 
     // Safety auto-cleanup
     setTimeout(cleanup, maxDuration + 1000);
+}
+
+// ==========================================
+// 11. DYNAMIC SCROLL-FADE ELEMENT SETUP
+// ==========================================
+function setupScrollFadeElements() {
+    // Remove scroll-fade from sections to avoid double-animation
+    document.querySelectorAll("section.scroll-fade").forEach(sec => {
+        sec.classList.remove("scroll-fade");
+    });
+
+    // Sub-elements to animate individually
+    const selectors = [
+        //".badge-dday",
+        //".cover-subtitle",
+        //".cover-title",
+        //".cover-image-container",
+        ".cover-info",
+        ".section-title",
+        ".section-divider",
+        //".intro-message p",
+        ".parent-relation",
+        //".venue-info",
+        //".map-container",
+        //".map-links .map-btn",
+        //".traffic-row",
+        ".timeline-item",
+        //".gallery-item",
+        ".countdown-timer .timer-box",
+        ".parent-card",
+        ".invitation-footer p"
+    ];
+
+    selectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            el.classList.add("scroll-fade");
+        });
+    });
 }
