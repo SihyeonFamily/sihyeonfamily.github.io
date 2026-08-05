@@ -1,33 +1,41 @@
 /* Root Variables for Color Palette & Design System */
 :root {
-    --bg-cream: #FCFBF7;
+    --bg-cream: #FFFDFE;
     --bg-card: #FFFFFF;
-    --text-main: #1E293B;
-    /* Sophisticated slate gray */
-    --text-sub: #475569;
+    --text-main: #352F30;
+    /* Sophisticated warm dark charcoal */
+    --text-sub: #6B5E62;
 
-    --color-sky-light: #E0F2FE;
-    --color-sky-deep: #0EA5E9;
-    --color-meadow-light: #F0FDF4;
-    --color-meadow-deep: #22C55E;
+    --color-sky-light: #FFEBEF;
+    /* Sophisticated soft pastel pink background */
+    --color-sky-deep: #FF7597;
+    /* Sophisticated deep pastel rose-pink */
+    --color-meadow-light: #FFFDF0;
+    /* Very soft warm pastel yellow background */
+    --color-meadow-deep: #F9C74F;
+    /* Sophisticated warm pastel yellow/gold */
 
-    --color-autumn-orange: #F97316;
-    --color-autumn-red: #EF4444;
-    --color-autumn-yellow: #FBBF24;
-    --color-autumn-green: #10B981;
+    --color-autumn-orange: #FF8DA1;
+    /* Sophisticated pastel pink accent */
+    --color-autumn-red: #FF5C8A;
+    /* Deep pastel rose */
+    --color-autumn-yellow: #FFF3B0;
+    /* Medium-soft pastel yellow */
+    --color-autumn-green: #FFB3C1;
+    /* Coordinating soft peach-pink */
 
     --color-accent: var(--color-autumn-orange);
-    --color-accent-hover: #EA580C;
-    --color-sage: #A7F3D0;
-    --color-beige: #FEF3C7;
-    --color-border: #E2E8F0;
+    --color-accent-hover: #FF6080;
+    --color-sage: #FFE5EC;
+    --color-beige: #FFF9DB;
+    --color-border: #F3E8EE;
 
     --font-heading: 'Gowun Batang', serif;
     --font-body: 'Gowun Dodum', sans-serif;
     --font-mono: 'Inter', sans-serif;
 
-    --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.06);
-    --shadow-card: 0 4px 20px rgba(15, 23, 42, 0.05);
+    --shadow-soft: 0 12px 30px rgba(107, 94, 98, 0.06);
+    --shadow-card: 0 4px 20px rgba(107, 94, 98, 0.05);
 }
 
 /* Reset and Global Styles */
@@ -39,7 +47,7 @@
 }
 
 body {
-    background-color: #F1F5F9;
+    background-color: #FAF5F6;
     color: var(--text-main);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -65,7 +73,7 @@ body {
     width: 100%;
     max-width: 480px;
     height: 100%;
-    background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 60%, #F0FDF4 100%);
+    background: linear-gradient(180deg, #FFE5EC 0%, #FFF0F2 60%, #FFFDF0 100%);
     z-index: 10000;
     display: flex;
     flex-direction: column;
@@ -427,7 +435,7 @@ body {
 
 /* Enter button */
 .enter-btn {
-    background: linear-gradient(135deg, var(--color-autumn-orange) 0%, #F59E0B 100%);
+    background: linear-gradient(135deg, var(--color-autumn-orange) 0%, #F9C74F 100%);
     color: #FFFFFF;
     border: none;
     padding: 16px 40px;
@@ -436,7 +444,7 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
+    box-shadow: 0 10px 25px rgba(255, 141, 161, 0.35);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -446,7 +454,7 @@ body {
 
 .enter-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 12px 30px rgba(249, 115, 22, 0.45);
+    box-shadow: 0 12px 30px rgba(255, 141, 161, 0.45);
 }
 
 .enter-btn:active {
@@ -472,11 +480,11 @@ body {
 
     0%,
     100% {
-        box-shadow: 0 10px 25px rgba(249, 115, 22, 0.35);
+        box-shadow: 0 10px 25px rgba(255, 141, 161, 0.35);
     }
 
     50% {
-        box-shadow: 0 10px 30px rgba(249, 115, 22, 0.55);
+        box-shadow: 0 10px 30px rgba(255, 141, 161, 0.55);
     }
 }
 
@@ -502,9 +510,8 @@ body {
     height: 80px;
     bottom: -20px;
     left: -20px;
-    background-color: #A7F3D0;
-    /* Emerald 200 */
-    opacity: 0.7;
+    background-color: var(--color-sage);
+    opacity: 0.75;
 }
 
 .hill-right {
@@ -512,8 +519,7 @@ body {
     height: 90px;
     bottom: -20px;
     right: -20px;
-    background-color: #86EFAC;
-    /* Emerald 300 */
+    background-color: var(--color-beige);
 }
 
 @keyframes fadeInUp {
@@ -611,7 +617,7 @@ body {
 }
 
 #contacts-section {
-    background-color: var(#FFFFFF);
+    background-color: var(--bg-card);
 }
 
 /* SECTION 1: Cover Section */
@@ -813,7 +819,7 @@ body {
 .mock-map {
     width: 100%;
     height: 100%;
-    background-color: #ECE7DF;
+    background-color: #FAF5F2;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1283,11 +1289,11 @@ body {
 }
 
 .gb-submit-btn:hover {
-    background-color: #0284C7;
+    background-color: #FF5C8A;
 }
 
 .gb-submit-btn:active {
-    background-color: #0369a1;
+    background-color: #E04673;
     transform: scale(0.98);
 }
 
@@ -1431,7 +1437,7 @@ body {
     border-radius: 50%;
     background-color: var(--color-accent);
     border: 2px solid #FFFFFF;
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 141, 161, 0.25);
     z-index: 2;
 }
 
@@ -1462,7 +1468,7 @@ body {
 .timeline-photo-placeholder {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #F8FAFC;
+    background-color: #FFFDFE;
     border-bottom: 1px solid var(--color-border);
     display: flex;
     justify-content: center;
@@ -1537,7 +1543,7 @@ body {
 
 /* Footer Section */
 .invitation-footer {
-    background-color: #F8FAFC;
+    background-color: #FFFDFE;
     padding: 40px 24px;
     text-align: center;
     border-top: 1px solid var(--color-border);
