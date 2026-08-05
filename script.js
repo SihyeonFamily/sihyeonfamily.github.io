@@ -118,12 +118,11 @@ function initScrollAnimations() {
         threshold: 0.05
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-            } else {
-                entry.target.classList.remove("visible");
+                observer.unobserve(entry.target); // Keep visible permanently once revealed
             }
         });
     }, observerOptions);
