@@ -559,6 +559,31 @@ body {
     transform: translateY(0) scale(1);
 }
 
+/* Staggered delays for child animations */
+.parent-contacts .parent-card:nth-child(1) { transition-delay: 0.1s; }
+.parent-contacts .parent-card:nth-child(2) { transition-delay: 0.2s; }
+
+.map-links .map-btn:nth-child(1) { transition-delay: 0.05s; }
+.map-links .map-btn:nth-child(2) { transition-delay: 0.15s; }
+.map-links .map-btn:nth-child(3) { transition-delay: 0.25s; }
+
+.gallery-grid .gallery-item:nth-child(1) { transition-delay: 0.05s; }
+.gallery-grid .gallery-item:nth-child(2) { transition-delay: 0.15s; }
+.gallery-grid .gallery-item:nth-child(3) { transition-delay: 0.25s; }
+.gallery-grid .gallery-item:nth-child(4) { transition-delay: 0.35s; }
+
+.countdown-timer .timer-box:nth-child(1) { transition-delay: 0.05s; }
+.countdown-timer .timer-box:nth-child(2) { transition-delay: 0.15s; }
+.countdown-timer .timer-box:nth-child(3) { transition-delay: 0.25s; }
+.countdown-timer .timer-box:nth-child(4) { transition-delay: 0.35s; }
+
+.intro-message p:nth-child(1) { transition-delay: 0.05s; }
+.intro-message p:nth-child(2) { transition-delay: 0.15s; }
+.intro-message p:nth-child(4) { transition-delay: 0.25s; }
+.intro-message p:nth-child(5) { transition-delay: 0.35s; }
+.intro-message p:nth-child(7) { transition-delay: 0.45s; }
+.intro-message p:nth-child(8) { transition-delay: 0.55s; }
+
 /* Layout Sections */
 .invitation-section {
     padding: 70px 24px;
