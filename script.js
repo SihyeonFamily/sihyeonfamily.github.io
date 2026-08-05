@@ -111,15 +111,16 @@ function initScrollAnimations() {
 
     const observerOptions = {
         root: null,
-        rootMargin: "0px",
-        threshold: 0.1
+        rootMargin: "-8% 0px -8% 0px", // Triggers when the section is slightly inside the viewport
+        threshold: 0.05
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Animates only once
+            } else {
+                entry.target.classList.remove("visible");
             }
         });
     }, observerOptions);
