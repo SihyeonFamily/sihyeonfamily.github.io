@@ -2,12 +2,49 @@
 const TARGET_DATE = new Date("2026-10-09T12:00:00+09:00");
 
 // Gallery Image Sources
-const GALLERY_IMAGES = [
-    "assets/cover.jpg",
-    "assets/gallery1.jpg",
-    "assets/gallery2.jpg",
-    "assets/gallery3.jpg"
-];
+const GALLERY_IMAGES = {
+    '1days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '50days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '100days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '150days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '200days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '250days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '300days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+    '350days': [
+        'assets/gallery1.jpg',
+        'assets/gallery2.jpg',
+        'assets/gallery3.jpg'
+    ],
+};
+let currentCategory = '';
 let currentLightboxIndex = 0;
 
 // Initialize on DOM Loaded
@@ -137,19 +174,23 @@ function initScrollAnimations() {
 // ==========================================
 // 3. PHOTO GALLERY LIGHTBOX
 // ==========================================
-function openLightbox(index) {
+function openLightbox(category, index = 0) {
+    if (!GALLERY_IMAGES[category] || GALLERY_IMAGES[category].length === 0) return;
+
+    currentCategory = category;
     currentLightboxIndex = index;
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
 
-    lightboxImg.src = GALLERY_IMAGES[currentLightboxIndex];
+    lightboxImg.src = GALLERY_IMAGES[currentCategory][currentLightboxIndex];
     lightbox.style.display = "flex";
     document.body.style.overflow = "hidden"; // Prevent background scroll
 }
 
 function closeLightbox(event) {
     // Closes lightbox if clicking backdrop, close symbol or backdrop container
-    if (event.target.id === "lightbox" || event.target.className === "lightbox-close" || event.type === "submit") {
+    if (!event || event.target.id === "lightbox" || event.target.className === "lightbox-close" || event.type === "submit") {
         const lightbox = document.getElementById("lightbox");
         lightbox.style.display = "none";
         document.body.style.overflow = "auto";
@@ -159,16 +200,20 @@ function closeLightbox(event) {
 function navigateLightbox(direction, event) {
     if (event) event.stopPropagation(); // Avoid triggering closeLightbox
 
+    const images = GALLERY_IMAGES[currentCategory];
+    if (!images) return;
+
     currentLightboxIndex += direction;
-    if (currentLightboxIndex >= GALLERY_IMAGES.length) {
+    if (currentLightboxIndex >= images.length) {
         currentLightboxIndex = 0;
     } else if (currentLightboxIndex < 0) {
-        currentLightboxIndex = GALLERY_IMAGES.length - 1;
+        currentLightboxIndex = images.length - 1;
     }
 
     const lightboxImg = document.getElementById("lightbox-img");
-    lightboxImg.src = GALLERY_IMAGES[currentLightboxIndex];
+    lightboxImg.src = images[currentLightboxIndex];
 }
+
 
 // ==========================================
 // 4. ACCORDION (ACCOUNT INFO)
