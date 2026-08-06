@@ -726,19 +726,19 @@ body {
 }
 
 #intro-section {
-    background-color: #FFFFFF;
+    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
 }
 
-#countdown-section {
-    background-color: var(--color-sky-light);
-}
-
-#gallery-section {
+#timeline-section {
     background-color: #FFFFFF;
 }
 
 #location-section {
     background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
+}
+
+#countdown-section {
+    background-color: var(--color-sky-light);
 }
 
 #contacts-section {
@@ -1496,9 +1496,6 @@ body {
 /* ==========================================
    GROWTH TIMELINE SYSTEM
    ========================================== */
-#timeline-section {
-    background-color: #FFFFFF;
-}
 
 .timeline-subtitle {
     font-size: 0.95rem;
