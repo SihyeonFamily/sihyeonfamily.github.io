@@ -111,7 +111,14 @@ body {
     stroke-width: 1.5px;
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
-    animation: drawCursive 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+.text-happy-birthday {
+    animation: drawCursive 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0s both;
+}
+
+.text-sihyeon {
+    animation: drawCursive 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0.7s both;
 }
 
 @keyframes drawCursive {
@@ -122,7 +129,7 @@ body {
 
     75% {
         stroke-dashoffset: 0;
-        fill: rgba(--color-autumn-red);
+        fill: rgba(255, 92, 138, 0);
     }
 
     100% {

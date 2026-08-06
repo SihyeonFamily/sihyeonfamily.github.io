@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("scroll-locked");
         setTimeout(() => {
             enterInvitation();
-        }, 1500); // 1s writing animation + 0.5s pause
+        }, 2700); // 0.7s delay + 1.5s writing animation (ends at 2.2s) + 0.5s pause
     }
 
     // 1. Setup dynamic scroll-fade elements
