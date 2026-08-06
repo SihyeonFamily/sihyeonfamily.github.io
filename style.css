@@ -73,22 +73,69 @@ body {
     width: 100%;
     max-width: 480px;
     height: 100%;
-    background: linear-gradient(180deg, #FFE5EC 0%, #FFF0F2 60%, #FFFDF0 100%);
+    background: rgba(255, 253, 254, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 10000;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: 60px 24px 0;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 24px;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .intro-overlay.fade-out {
     opacity: 0;
-    transform: translateX(-50%) translateY(-30px);
     pointer-events: none;
+}
+
+.intro-handwriting-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.handwriting-svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.handwriting-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 90px;
+    fill: none;
+    stroke: var(--color-autumn-red);
+    stroke-width: 1.5px;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+}
+
+.text-happy-birthday {
+    animation: drawCursive 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0s both;
+}
+
+.text-sihyeon {
+    animation: drawCursive 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0.7s both;
+}
+
+@keyframes drawCursive {
+    0% {
+        stroke-dashoffset: 1200;
+        fill: rgba(255, 92, 138, 0);
+    }
+
+    75% {
+        stroke-dashoffset: 0;
+        fill: rgba(255, 92, 138, 0);
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill: var(--color-autumn-red);
+    }
 }
 
 /* Garland Flags */
