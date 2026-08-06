@@ -12,10 +12,13 @@ let currentLightboxIndex = 0;
 
 // Initialize on DOM Loaded
 document.addEventListener("DOMContentLoaded", () => {
-    // 0. Lock scroll if intro overlay is present
+    // 0. Lock scroll if intro overlay is present and schedule auto-exit
     const overlay = document.getElementById("intro-overlay");
     if (overlay) {
         document.body.classList.add("scroll-locked");
+        setTimeout(() => {
+            enterInvitation();
+        }, 1500); // 1s writing animation + 0.5s pause
     }
 
     // 1. Setup dynamic scroll-fade elements
