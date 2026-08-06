@@ -114,11 +114,11 @@ body {
 }
 
 .text-happy-birthday {
-    animation: drawCursive 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0s both;
+    animation: drawCursive 1.0s cubic-bezier(0.42, 0, 0.58, 1) 0s both;
 }
 
 .text-sihyeon {
-    animation: drawCursive 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0.7s both;
+    animation: drawCursive 1.0s cubic-bezier(0.42, 0, 0.58, 1) 0.5s both;
 }
 
 @keyframes drawCursive {
