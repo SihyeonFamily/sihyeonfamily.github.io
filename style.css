@@ -59,8 +59,12 @@ body {
 }
 
 .scroll-locked {
-    overflow: hidden;
-    height: 100vh;
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    touch-action: none !important;
+    /* 모바일 터치 스크롤 동작 차단 */
+    -webkit-overflow-scrolling: none !important;
 }
 
 /* ==========================================
@@ -81,6 +85,8 @@ body {
     align-items: center;
     overflow: hidden;
     padding: 24px;
+
+    touch-action: none;
 
     /* 끊김 현상 방지: opacity 전환 시 transform/will-change 추가 */
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
