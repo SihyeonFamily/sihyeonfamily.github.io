@@ -689,7 +689,6 @@ function setupScrollFadeElements() {
     });
 }
 
-
 var player;
 var isPlaying = false;
 
@@ -701,14 +700,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
         videoId: 'SYHfOvTmpO4',
         playerVars: {
             'autoplay': 0,
-            'controls': 0,
+            'controls': 1, // 플레이어 컨트롤 표시
             'loop': 1,
-            'playlist': 'SYHfOvTmpO4'
+            'playlist': 'SYHfOvTmpO4',
+            'rel': 0
         },
         events: {
             'onReady': onPlayerReady
@@ -717,7 +715,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    // 모바일 브라우저 차단을 우회하기 위해 화면 첫 터치/클릭 시 재생
+    // 모바일 자동재생 제한을 우회하기 위해 첫 화면 터치/클릭 시 음악 재생
     function startAudioOnFirstTouch() {
         if (!isPlaying && player) {
             player.playVideo();
@@ -732,7 +730,7 @@ function onPlayerReady(event) {
     document.addEventListener('touchstart', startAudioOnFirstTouch);
 }
 
-// 버튼 누를 때 켜고 끄는 기능
+// 상단 BGM 버튼 클릭 시 켜고 끄는 기능
 function toggleBGM() {
     var btn = document.getElementById('bgmToggleBtn');
     if (!player) return;
