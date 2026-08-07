@@ -747,19 +747,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    // 모바일 자동재생 제한을 우회하기 위해 첫 화면 터치/클릭 시 음악 재생
-    function startAudioOnFirstTouch() {
-        if (!isPlaying && player) {
-            player.playVideo();
-            isPlaying = true;
-            document.getElementById('bgmToggleBtn').innerText = '🔊 BGM On';
-        }
-        document.removeEventListener('click', startAudioOnFirstTouch);
-        document.removeEventListener('touchstart', startAudioOnFirstTouch);
-    }
-
-    document.addEventListener('click', startAudioOnFirstTouch);
-    document.addEventListener('touchstart', startAudioOnFirstTouch);
+    event.target.playVideo();
 }
 
 // 상단 BGM 버튼 클릭 시 켜고 끄는 기능
