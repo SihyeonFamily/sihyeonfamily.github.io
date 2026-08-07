@@ -1,10 +1,10 @@
 // Target Date for Sihyeon's 1st Birthday: October 9, 2026, 12:00 PM (KST)
 const TARGET_DATE = new Date("2026-10-09T12:00:00+09:00");
 
-// Gallery Image Sources
-const GALLERY_IMAGES = {
+// Timeline Image Sources
+const TIMELINE_IMAGES = {
     '1days': [
-        'assets/gallery1.jpg',
+        'assets/cover.jpg',
         'assets/gallery2.jpg',
         'assets/gallery3.jpg'
     ],
@@ -213,6 +213,39 @@ function navigateLightbox(direction, event) {
     lightboxImg.src = images[currentLightboxIndex];
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const timelineSwipers = document.querySelectorAll('.timelineSwiper');
+
+    timelineSwipers.forEach(function (swiperContainer) {
+        // HTML의 data-category 속성값 읽기 (예: '1days', '50days')
+        const category = swiperContainer.getAttribute('data-category');
+        const wrapper = swiperContainer.querySelector('.swiper-wrapper');
+
+        // 해당 카테고리의 이미지 배열이 존재할 경우 슬라이드 HTML 자동 생성
+        if (TIMELINE_IMAGES[category] && wrapper) {
+            TIMELINE_IMAGES[category].forEach(function (imgSrc, index) {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.innerHTML = `<img src="${imgSrc}" alt="${category} 사진 ${index + 1}">`;
+                wrapper.appendChild(slide);
+            });
+        }
+
+        // 이미지 생성이 끝난 후 Swiper 슬라이더 초기화
+        new Swiper(swiperContainer, {
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: swiperContainer.querySelector('.swiper-pagination'),
+                clickable: true,
+            },
+            speed: 500,
+        });
+    });
+});
 
 // ==========================================
 // 4. ACCORDION (ACCOUNT INFO)

@@ -20,6 +20,9 @@
         href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Inter:wght@400;500;600&family=Great+Vibes&display=swap"
         rel="stylesheet">
 
+    <!-- Swiper.js CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -135,7 +138,7 @@
                 </svg>
             </div>
             <h3 class="section-title">성장 일지</h3>
-            <p class="timeline-subtitle">사진을 클릭하면 더 많은 시현이의 모습을 볼 수 있습니다.</p>
+            <p class="timeline-subtitle">사진을 좌우로 넘기면 더 많은 시현이의 모습을 볼 수 있습니다.</p>
 
             <div class="timeline-container">
                 <div class="timeline-line"></div>
@@ -147,9 +150,9 @@
                         <span class="date-label">2024.10.15</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="1일 사진" onclick="openLightbox('1days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="1days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>설레는 첫 만남</h4>
@@ -165,9 +168,9 @@
                         <span class="date-label">2024.12.03</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="50일 사진" onclick="openLightbox('50days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="50days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>작고 눈부신 날들</h4>
@@ -180,12 +183,12 @@
                 <div class="timeline-item left">
                     <div class="timeline-meta">
                         <span class="day-label">D+100</span>
-                        <span class="date-label">2024.12.03</span>
+                        <span class="date-label">2025.01.22</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="100일 사진" onclick="openLightbox('100days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="100days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>백일의 기적</h4>
@@ -198,12 +201,12 @@
                 <div class="timeline-item right">
                     <div class="timeline-meta">
                         <span class="day-label">D+150</span>
-                        <span class="date-label">2024.12.03</span>
+                        <span class="date-label">2025.03.13</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="150일 사진" onclick="openLightbox('150days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="150days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>뒤집기와 새로운 시선</h4>
@@ -216,16 +219,16 @@
                 <div class="timeline-item left">
                     <div class="timeline-meta">
                         <span class="day-label">D+200</span>
-                        <span class="date-label">2024.12.03</span>
+                        <span class="date-label">2025.05.02</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="200일 사진" onclick="openLightbox('200days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="200days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>눈 맞춰 웃는 계절</h4>
-                            <p> 눈을 맞추고 세상과 소통하기 시작한 순간</p>
+                            <p>눈을 맞추고 세상과 소통하기 시작한 순간</p>
                         </div>
                     </div>
                 </div>
@@ -234,16 +237,16 @@
                 <div class="timeline-item right">
                     <div class="timeline-meta">
                         <span class="day-label">D+250</span>
-                        <span class="date-label">2024.12.03</span>
+                        <span class="date-label">2025.06.21</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="250일 사진" onclick="openLightbox('250days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="250days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>아장아장 탐험가</h4>
-                            <p> 호기심 어린 눈빛으로 세상을 넓혀가는 중 </p>
+                            <p>호기심 어린 눈빛으로 세상을 넓혀가는 중</p>
                         </div>
                     </div>
                 </div>
@@ -252,16 +255,16 @@
                 <div class="timeline-item left">
                     <div class="timeline-meta">
                         <span class="day-label">D+300</span>
-                        <span class="date-label">2024.12.03</span>
+                        <span class="date-label">2025.08.10</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="300일 사진" onclick="openLightbox('300days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="300days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>혼자서도 척척</h4>
-                            <p> 스스로 앉아 더 넓은 세상을 바라볼 때</p>
+                            <p>스스로 앉아 더 넓은 세상을 바라볼 때</p>
                         </div>
                     </div>
                 </div>
@@ -270,12 +273,12 @@
                 <div class="timeline-item right">
                     <div class="timeline-meta">
                         <span class="day-label">D+350</span>
-                        <span class="date-label">2024.12.03</span>
+                        <span class="date-label">2025.09.29</span>
                     </div>
                     <div class="timeline-content">
-                        <div class="timeline-photo-placeholder">
-                            <img src="assets/cover.jpg" alt="350일 사진" onclick="openLightbox('350days', 0)"
-                                style="cursor: pointer;">
+                        <div class="timeline-photo-placeholder swiper timelineSwiper" data-category="350days">
+                            <div class="swiper-wrapper"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                         <div class="timeline-text">
                             <h4>첫번째 사계절</h4>
@@ -420,6 +423,7 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 
     <!-- Lightbox Modal -->
