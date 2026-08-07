@@ -734,7 +734,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtube-player', {
         videoId: 'SYHfOvTmpO4',
         playerVars: {
-            'autoplay': 0,
+            'autoplay': 1,
             'controls': 1, // 플레이어 컨트롤 표시
             'loop': 1,
             'playlist': 'SYHfOvTmpO4',
