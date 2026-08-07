@@ -1511,7 +1511,7 @@ body {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
 }
 
 /* Central line */
@@ -1519,7 +1519,7 @@ body {
     position: absolute;
     left: 50%;
     top: 0;
-    bottom: 0;
+    bottom: 75px;
     width: 2px;
     background-color: var(--color-border);
     transform: translateX(-50%);
@@ -1712,6 +1712,108 @@ body {
 
     .timeline-text p {
         font-size: 0.68rem;
+    }
+}
+
+/* ==========================================
+   TIMELINE FINALE EMBLEM (365Days)
+   ========================================== */
+
+.timeline-finale-emblem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    z-index: 2;
+    text-align: center;
+}
+
+/* 중앙 원형 배지 */
+.emblem-circle {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    border: 3px solid var(--color-accent);
+    box-shadow: 0 0 0 5px rgba(255, 141, 161, 0.25), 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    transition: transform 0.3s ease;
+}
+
+/* 살짝 펄스(pulse) 애니메이션으로 시선 집중 */
+.emblem-circle {
+    animation: emblemPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes emblemPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 5px rgba(255, 141, 161, 0.25), 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    50% {
+        box-shadow: 0 0 0 9px rgba(255, 141, 161, 0.35), 0 6px 20px rgba(255, 141, 161, 0.2);
+    }
+}
+
+.emblem-crown {
+    font-size: 1.1rem;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.emblem-dday {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    letter-spacing: -0.3px;
+}
+
+/* 엠블럼 하단 텍스트 */
+.emblem-text h4 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.emblem-text p {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    letter-spacing: -0.2px;
+}
+
+/* 좁은 화면(380px 이하) 미세 조정 */
+@media screen and (max-width: 380px) {
+    .emblem-circle {
+        width: 68px;
+        height: 68px;
+    }
+
+    .emblem-crown {
+        font-size: 1rem;
+    }
+
+    .emblem-dday {
+        font-size: 0.82rem;
+    }
+
+    .emblem-text h4 {
+        font-size: 1.05rem;
+    }
+
+    .emblem-text p {
+        font-size: 0.75rem;
     }
 }
 
