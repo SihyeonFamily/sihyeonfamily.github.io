@@ -1554,7 +1554,7 @@ body {
 .timeline-item::after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: 50%;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -1562,6 +1562,7 @@ body {
     border: 2px solid #FFFFFF;
     box-shadow: 0 0 0 3px rgba(255, 141, 161, 0.25);
     z-index: 2;
+    transform: translateY(-50%);
 }
 
 .timeline-item.left::after {
@@ -1570,6 +1571,44 @@ body {
 
 .timeline-item.right::after {
     left: -6px;
+}
+
+/* Timeline Opposite Side Meta Content (D-day & Date) */
+.timeline-meta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    font-family: var(--font-heading);
+}
+
+.timeline-item.left .timeline-meta {
+    left: calc(100% + 20px);
+    text-align: left;
+}
+
+.timeline-item.right .timeline-meta {
+    right: calc(100% + 20px);
+    text-align: right;
+}
+
+.timeline-meta .day-label {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1.0;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+}
+
+.timeline-meta .date-label {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-sub);
+    letter-spacing: -0.2px;
+    opacity: 0.9;
 }
 
 /* Content block styling */
@@ -1659,6 +1698,22 @@ body {
 
     .timeline-item.right {
         padding-left: 12px;
+    }
+
+    .timeline-item.left .timeline-meta {
+        left: calc(100% + 12px);
+    }
+
+    .timeline-item.right .timeline-meta {
+        right: calc(100% + 12px);
+    }
+
+    .timeline-meta .day-label {
+        font-size: 1.3rem;
+    }
+
+    .timeline-meta .date-label {
+        font-size: 0.75rem;
     }
 
     .timeline-text {
