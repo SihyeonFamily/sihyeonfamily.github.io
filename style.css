@@ -2,6 +2,7 @@
 :root {
     --bg-cream: #FFFDFE;
     --bg-card: #FFFFFF;
+    --bg-white: #FFFFFF;
     --text-main: #352F30;
     /* Sophisticated warm dark charcoal */
     --text-sub: #6B5E62;
@@ -722,19 +723,19 @@ body {
 
 /* Section Theme Colors override */
 #cover-section {
-    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--color-sky-light) 0%, var(--bg-white) 100%);
 }
 
 #intro-section {
-    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
-}
-
-#timeline-section {
-    background-color: #FFFFFF;
+    background-color: var(--bg-white);
 }
 
 #location-section {
-    background: linear-gradient(180deg, var(--color-sky-light) 0%, #FFFFFF 100%);
+    background: linear-gradient(180deg, var(--color-sky-light) 0%, var(--bg-white) 100%);
+}
+
+#timeline-section {
+    background-color: var(--bg-white);
 }
 
 #countdown-section {
@@ -742,7 +743,7 @@ body {
 }
 
 #contacts-section {
-    background-color: var(--bg-card);
+    background-color: var(--bg-white);
 }
 
 /* SECTION 1: Cover Section */
@@ -1675,7 +1676,7 @@ body {
 
 /* Footer Section */
 .invitation-footer {
-    background-color: #FFFDFE;
+    background-color: var(--bg-cream);
     padding: 40px 24px;
     text-align: center;
     border-top: 1px solid var(--color-border);
