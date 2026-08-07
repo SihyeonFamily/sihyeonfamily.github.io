@@ -688,3 +688,62 @@ function setupScrollFadeElements() {
         });
     });
 }
+
+
+var player;
+var isPlaying = false;
+
+// YouTube API 로드
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: 'SYHfOvTmpO4',
+        playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'loop': 1,
+            'playlist': 'SYHfOvTmpO4'
+        },
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    // 모바일 브라우저 차단을 우회하기 위해 화면 첫 터치/클릭 시 재생
+    function startAudioOnFirstTouch() {
+        if (!isPlaying && player) {
+            player.playVideo();
+            isPlaying = true;
+            document.getElementById('bgmToggleBtn').innerText = '🔊 BGM On';
+        }
+        document.removeEventListener('click', startAudioOnFirstTouch);
+        document.removeEventListener('touchstart', startAudioOnFirstTouch);
+    }
+
+    document.addEventListener('click', startAudioOnFirstTouch);
+    document.addEventListener('touchstart', startAudioOnFirstTouch);
+}
+
+// 버튼 누를 때 켜고 끄는 기능
+function toggleBGM() {
+    var btn = document.getElementById('bgmToggleBtn');
+    if (!player) return;
+
+    if (isPlaying) {
+        player.pauseVideo();
+        isPlaying = false;
+        btn.innerText = '🎵 BGM Off';
+    } else {
+        player.playVideo();
+        isPlaying = true;
+        btn.innerText = '🔊 BGM On';
+    }
+}

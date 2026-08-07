@@ -360,6 +360,24 @@
         <!-- 다음 버튼 (&#10095; 는 > 모양 화살표 기호입니다) -->
         <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">&#10095;</button>
     </div>
+
+    <!-- 1. BGM 컨트롤 버튼 (화면 우측 상단 고정) -->
+    <button id="bgmToggleBtn" onclick="toggleBGM()" style="
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 8px 14px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+">🎵 BGM</button>
+
+    <!-- 2. 숨겨진 YouTube 플레이어 영역 -->
+    <div id="youtube-player" style="display:none;"></div>
 </body>
 
 </html>
