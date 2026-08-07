@@ -83,13 +83,12 @@ function enterInvitation() {
         overlay.classList.add("fade-out");
         document.body.classList.remove("scroll-locked");
 
-        // Trigger the elegant confetti/petal entrance effect
         triggerEntranceConfetti();
 
-        // Let it fade out completely before display: none
+        // CSS transition(0.8s = 800ms)이 완전히 끝난 후 숨김 처리
         setTimeout(() => {
             overlay.style.display = "none";
-        }, 800); // matches CSS transition duration
+        }, 850);
     }
 }
 
