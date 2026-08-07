@@ -435,12 +435,22 @@ function openTmap() {
         return;
     }
 
-    const goalName = "밀리토피아호텔바이마린";
-    const lat = 37.4654;
-    const lon = 127.1396;
-    const appUrl = `tmap://route?goalname=${encodeURIComponent(goalName)}&goalx=${lon}&goaly=${lat}`;
+    const goalName = "밀리토피아호텔 바이마린";
+    const encodedName = encodeURIComponent(goalName);
+    const appUrl = `tmap://search?name=${encodedName}`;
 
+    // Web Fallback: If app not installed
+    const webUrl = `https://m.tmap.co.kr/search.do?keyword=${encodedName}`;
+
+    const startTime = Date.now();
     window.location.href = appUrl;
+
+    setTimeout(() => {
+        // If app not installed
+        if (Date.now() - startTime < 2000) {
+            window.location.href = webUrl;
+        }
+    }, 1500);
 }
 
 // ==========================================
