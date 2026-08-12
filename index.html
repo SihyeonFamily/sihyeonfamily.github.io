@@ -378,6 +378,77 @@
             </div>
         </section>
 
+        <!-- SECTION 7: RSVP -->
+        <section id="rsvp-section" class="rsvp-section scroll-fade">
+
+            <div class="container">
+                <!-- 섹션 헤더/버튼 (필요 시 문구 변경 가능) -->
+                <div style="text-align: center; padding: 40px 20px;">
+                    <h2
+                        style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">
+                        참석 여부 전달</h2>
+                    <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5;">
+                        축하의 마음을 전달해주실 분들은<br>참석 여부를 미리 알려주시면 감사하겠습니다.
+                    </p>
+                    <button type="button" class="rsvp-submit-btn" style="max-width: 200px;" onclick="openRSVPModal()">
+                        참석 여부 전달하기
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Modal -->
+        <!-- RSVP Modal -->
+        <div id="rsvp-modal" class="modal" onclick="closeRSVPModal(event)">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeRSVPModal(event)">&times;</span>
+                <h3 class="modal-title">참석 여부 전달</h3>
+
+                <form id="rsvp-form" onsubmit="submitRSVP(event)">
+                    <!-- 성함 입력 -->
+                    <div class="form-group">
+                        <label for="rsvp-name">성함</label>
+                        <input type="text" id="rsvp-name" placeholder="성함을 입력해주세요" required />
+                    </div>
+
+                    <!-- 참석 여부 선택 -->
+                    <div class="form-group">
+                        <label>참석 여부</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="rsvp-status" value="참석" checked />
+                                참석
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="rsvp-status" value="불참" />
+                                불참
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 동반 인원 선택 -->
+                    <div class="form-group">
+                        <label for="rsvp-count">동반 인원 (본인 포함)</label>
+                        <select id="rsvp-count">
+                            <option value="1명">1명</option>
+                            <option value="2명">2명</option>
+                            <option value="3명">3명</option>
+                            <option value="4명 이상">4명 이상</option>
+                        </select>
+                    </div>
+
+                    <!-- 전달 메시지 -->
+                    <div class="form-group">
+                        <label for="rsvp-memo">축하 메시지 / 메모</label>
+                        <textarea id="rsvp-memo" rows="3" placeholder="아기에게 전하고 싶은 축하 말을 남겨주세요."></textarea>
+                    </div>
+
+                    <!-- 제출 버튼 -->
+                    <button type="submit" id="rsvp-submit-btn" class="rsvp-submit-btn">전송하기</button>
+                </form>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="invitation-footer">
             <p>© 2026. Sihyeon's First Birthday. All Rights Reserved.</p>

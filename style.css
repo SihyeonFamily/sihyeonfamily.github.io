@@ -755,6 +755,10 @@ body {
     background-color: var(--bg-white);
 }
 
+#rsvp-section {
+    background-color: var(--bg-white);
+}
+
 /* SECTION 1: Cover Section */
 #cover-section {
     position: relative;
