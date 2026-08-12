@@ -69,13 +69,26 @@ function unlockScroll() {
 }
 
 // Initialize on DOM Loaded
+let introTimeout;
 document.addEventListener("DOMContentLoaded", () => {
     // 0. Lock scroll if intro overlay is present and schedule auto-exit
     const overlay = document.getElementById("intro-overlay");
     if (overlay) {
         lockScroll(); // 강화된 스크롤 잠금 실행
 
-        setTimeout(() => {
+        // Click or tap overlay to enter immediately (and trigger BGM via user gesture)
+        const handleOverlayClick = () => {
+            clearTimeout(introTimeout);
+            if (player && isPlaying) {
+                player.playVideo();
+            }
+            enterInvitation();
+        };
+
+        overlay.addEventListener("click", handleOverlayClick);
+        overlay.addEventListener("touchstart", handleOverlayClick, { passive: true });
+
+        introTimeout = setTimeout(() => {
             enterInvitation();
         }, 2000); // 인트로 대기 시간
     }
