@@ -829,7 +829,7 @@ function setupScrollFadeElements() {
 }
 
 var player;
-var isPlaying = false;
+var isPlaying = true;
 
 // YouTube API 로드
 var tag = document.createElement('script');
@@ -854,7 +854,19 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
+    // 자동 재생 시도 및 첫 터치 시 음원 실행 보장
     event.target.playVideo();
+
+    function startOnFirstTouch() {
+        if (player && isPlaying) {
+            player.playVideo();
+        }
+        document.removeEventListener('click', startOnFirstTouch);
+        document.removeEventListener('touchstart', startOnFirstTouch);
+    }
+
+    document.addEventListener('click', startOnFirstTouch);
+    document.addEventListener('touchstart', startOnFirstTouch);
 }
 
 // 상단 BGM 버튼 클릭 시 켜고 끄는 기능
