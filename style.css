@@ -759,6 +759,10 @@ body {
     background-color: var(--bg-white);
 }
 
+#share-section {
+    background-color: var(--bg-white);
+}
+
 /* SECTION 1: Cover Section */
 #cover-section {
     position: relative;
@@ -1932,4 +1936,47 @@ body {
     pointer-events: none;
     z-index: 9999;
     display: block;
+}
+
+/* SECTION 9: Share Section CSS */
+.share-kakao-btn {
+    width: 100%;
+    max-width: 320px;
+    background-color: #FEE500;
+    color: #191919;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 auto;
+}
+
+.share-kakao-btn:hover {
+    background-color: #FADA0A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(254, 229, 0, 0.35);
+}
+
+.share-kakao-btn:active {
+    transform: translateY(0);
+}
+
+.share-kakao-btn svg.kakao-icon {
+    fill: #191919;
+}
+
+/* Adjust Spacing for RSVP and Share Section */
+#rsvp-section,
+#share-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
