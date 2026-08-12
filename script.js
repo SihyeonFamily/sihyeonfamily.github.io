@@ -326,6 +326,89 @@ function submitRSVP(event) {
 }
 
 // ==========================================
+// RSVP FORM MODAL (Google Forms 연동)
+// ==========================================
+function openRSVPModal() {
+    const modal = document.getElementById("rsvp-modal");
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function closeRSVPModal(event) {
+    if (event.target.id === "rsvp-modal" || event.target.className === "modal-close") {
+        const modal = document.getElementById("rsvp-modal");
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+}
+
+function submitRSVP(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("rsvp-name").value.trim();
+    const statusObj = document.querySelector('input[name="rsvp-status"]:checked');
+    const status = statusObj ? statusObj.value : "참석";
+    const count = document.getElementById("rsvp-count").value;
+    const memo = document.getElementById("rsvp-memo").value.trim();
+
+    if (!name) {
+        if (typeof showToast === "function") showToast("성함을 입력해주세요.");
+        else alert("성함을 입력해주세요.");
+        return;
+    }
+
+    // -------------------------------------------------------------
+    // [설정 영역] 본인의 Google Form 정보로 수정해주세요!
+    // -------------------------------------------------------------
+    // 1. Google Form Response URL (끝이 /formResponse 로 끝나야 합니다)
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/1E1OXrw63VHU9F03waQBtLyfNZM5z90rQgJWZWBJzb1s/formResponse";
+
+    // 2. Google Form 각 필드의 entry ID
+    const formData = new FormData();
+    formData.append("entry.580033275", name);   // 성함 질문 entry ID
+    formData.append("entry.2002034326", status); // 참석여부 질문 entry ID
+    formData.append("entry.1910724404", count);  // 동반인원 질문 entry ID
+    formData.append("entry.1171485198", memo);   // 메모 질문 entry ID
+    // -------------------------------------------------------------
+
+    const submitBtn = document.getElementById("rsvp-submit-btn");
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "전송 중...";
+    }
+
+    // Google Form 백그라운드 무응답 전송 (CORS 우회)
+    fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    })
+        .then(() => {
+            if (typeof showToast === "function") {
+                showToast(`${name}님의 참석 정보가 등록되었습니다. 감사합니다!`);
+            } else {
+                alert(`${name}님의 참석 정보가 등록되었습니다. 감사합니다!`);
+            }
+
+            // 폼 초기화 및 모달 닫기
+            document.getElementById("rsvp-form").reset();
+            const modal = document.getElementById("rsvp-modal");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        })
+        .catch((error) => {
+            console.error("RSVP 전송 에러:", error);
+            alert("전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+        })
+        .finally(() => {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "전송하기";
+            }
+        });
+}
+
+// ==========================================
 // 6. GUESTBOOK SYSTEM (LOCALSTORAGE)
 // ==========================================
 function submitGuestbook(event) {
