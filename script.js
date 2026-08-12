@@ -842,10 +842,10 @@ function onYouTubeIframeAPIReady() {
         videoId: 'SYHfOvTmpO4',
         playerVars: {
             'autoplay': 1,
-            'controls': 1,
+            'controls': 1, // 플레이어 컨트롤 표시
             'loop': 1,
             'playlist': 'SYHfOvTmpO4',
-            'playsinline': 1 // 모바일 브라우저 인라인 재생 필수 옵션
+            'rel': 0
         },
         events: {
             'onReady': onPlayerReady
@@ -854,40 +854,19 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    // 자동 재생 시도
-    tryPlay();
+    // 자동 재생 시도 및 첫 터치 시 음원 실행 보장
+    event.target.playVideo();
 
-    // 터치 및 클릭 시 재생 시도 (모바일 Chrome 대응)
-    function enableAudio() {
+    function startOnFirstTouch() {
         if (player && isPlaying) {
-            tryPlay();
+            player.playVideo();
         }
-        // 재생 성공 여부와 상관없이 이벤트 리스너 제거
-        document.removeEventListener('click', enableAudio);
-        document.removeEventListener('touchstart', enableAudio);
-        document.removeEventListener('touchend', enableAudio);
+        document.removeEventListener('click', startOnFirstTouch);
+        document.removeEventListener('touchstart', startOnFirstTouch);
     }
 
-    document.addEventListener('click', enableAudio);
-    document.addEventListener('touchstart', enableAudio);
-    document.addEventListener('touchend', enableAudio);
-}
-
-function tryPlay() {
-    if (!player) return;
-
-    // playVideo() 실행 시 모바일 차단 오류를 잡아내는 예외 처리
-    try {
-        var promise = player.playVideo();
-        if (promise !== undefined) {
-            promise.catch(function (error) {
-                // 모바일 크롬이 제스처 부족으로 차단한 경우
-                console.log("Autoplay prevented by mobile browser policy.");
-            });
-        }
-    } catch (e) {
-        console.log(e);
-    }
+    document.addEventListener('click', startOnFirstTouch);
+    document.addEventListener('touchstart', startOnFirstTouch);
 }
 
 // 상단 BGM 버튼 클릭 시 켜고 끄는 기능
