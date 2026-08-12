@@ -47,15 +47,37 @@ const TIMELINE_IMAGES = {
 let currentCategory = '';
 let currentLightboxIndex = 0;
 
+// 인앱 브라우저 스크롤 완전 차단을 위한 이벤트 방지 함수
+function preventDefaultScroll(e) {
+    e.preventDefault();
+}
+
+// 스크롤 잠금 함수 (터치 및 휠 이벤트 차단)
+function lockScroll() {
+    document.body.classList.add("scroll-locked");
+    // 모바일 터치 이동 및 마우스 휠 스크롤 강제 차단
+    window.addEventListener("touchmove", preventDefaultScroll, { passive: false });
+    window.addEventListener("wheel", preventDefaultScroll, { passive: false });
+}
+
+// 스크롤 해제 함수
+function unlockScroll() {
+    document.body.classList.remove("scroll-locked");
+    // 이벤트 리스너 제거하여 스크롤 복구
+    window.removeEventListener("touchmove", preventDefaultScroll);
+    window.removeEventListener("wheel", preventDefaultScroll);
+}
+
 // Initialize on DOM Loaded
 document.addEventListener("DOMContentLoaded", () => {
     // 0. Lock scroll if intro overlay is present and schedule auto-exit
     const overlay = document.getElementById("intro-overlay");
     if (overlay) {
-        document.body.classList.add("scroll-locked");
+        lockScroll(); // 강화된 스크롤 잠금 실행
+
         setTimeout(() => {
             enterInvitation();
-        }, 2000); // 0.5s delay + 1.0s writing animation + 0.5 pause (ends at 2.4s)
+        }, 2000); // 인트로 대기 시간
     }
 
     // 1. Setup dynamic scroll-fade elements
@@ -81,14 +103,16 @@ function enterInvitation() {
     const overlay = document.getElementById("intro-overlay");
     if (overlay) {
         overlay.classList.add("fade-out");
-        document.body.classList.remove("scroll-locked");
 
+        unlockScroll(); // 스크롤 잠금 해제
+
+        // Trigger the elegant confetti/petal entrance effect
         triggerEntranceConfetti();
 
-        // CSS transition(0.8s = 800ms)이 완전히 끝난 후 숨김 처리
+        // Let it fade out completely before display: none
         setTimeout(() => {
             overlay.style.display = "none";
-        }, 850);
+        }, 800); // matches CSS transition duration
     }
 }
 
