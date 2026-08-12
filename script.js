@@ -909,16 +909,16 @@ Kakao.Share.createDefaultButton({
         description: '2026년 10월 9일 (금) 오후 12시\n위례 밀리토피아호텔 바이마린 다이닝100',
         imageUrl: 'https://sihyeonfamily.github.io/assets/cover.jpg', // 대표 사진 URL
         link: {
-            mobileWebUrl: 'https://sihyeonfamily.github.io/',
-            webUrl: 'https://sihyeonfamily.github.io/',
+            mobileWebUrl: 'https://sihyeonfamily.github.io',
+            webUrl: 'https://sihyeonfamily.github.io',
         },
     },
     buttons: [
         {
             title: '초대장 보기',
             link: {
-                mobileWebUrl: 'https://sihyeonfamily.github.io/',
-                webUrl: 'https://sihyeonfamily.github.io/',
+                mobileWebUrl: 'https://sihyeonfamily.github.io',
+                webUrl: 'https://sihyeonfamily.github.io',
             },
         },
     ],
