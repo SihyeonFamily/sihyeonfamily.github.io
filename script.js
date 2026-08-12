@@ -897,3 +897,29 @@ function toggleBGM() {
         btn.innerText = '🔊 BGM On';
     }
 }
+
+Kakao.init('58e14feca9d8879c7da5137acc150ead');
+
+// 4. 카카오톡 공유 버튼 연동
+Kakao.Share.createDefaultButton({
+    container: '#kakaotalk-sharing-btn',
+    objectType: 'feed',
+    content: {
+        title: '시현이의 첫번째 생일에 초대합니다 👶',
+        description: '2026년 10월 9일 (금) 오후 12시\n위례 밀리토피아호텔 바이마린 다이닝100',
+        imageUrl: 'https://sihyeonfamily.github.io/assets/cover.jpg', // 대표 사진 URL
+        link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
+        },
+    },
+    buttons: [
+        {
+            title: '초대장 보기',
+            link: {
+                mobileWebUrl: window.location.href,
+                webUrl: window.location.href,
+            },
+        },
+    ],
+});

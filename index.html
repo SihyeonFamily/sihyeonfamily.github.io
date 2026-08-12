@@ -379,18 +379,22 @@
         </section>
 
         <!-- SECTION 7: RSVP -->
-        <section id="rsvp-section" class="rsvp-section scroll-fade">
+        <section id="rsvp-section" class="invitation-section scroll-fade">
+            <div class="section-divider">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                        fill="var(--color-accent)" opacity="0.8" />
+                </svg>
+            </div>
 
             <div class="container">
-                <!-- 섹션 헤더/버튼 (필요 시 문구 변경 가능) -->
-                <div style="text-align: center; padding: 40px 20px;">
-                    <h2
-                        style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; margin-bottom: 12px;">
-                        참석 여부 전달</h2>
-                    <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5;">
-                        축하의 마음을 전달해주실 분들은<br>참석 여부를 미리 알려주시면 감사하겠습니다.
-                    </p>
-                    <button type="button" class="rsvp-submit-btn" style="max-width: 200px;" onclick="openRSVPModal()">
+                <div style="text-align: center; padding: 10px 20px 0 20px;">
+                    <h3 class="section-title">참석 여부 전달</h3>
+                    <p class="share-subtitle"
+                        style="font-size: 0.95rem; color: var(--text-sub); margin-top: -20px; margin-bottom: 30px; text-align: center;">
+                        정성껏 모시기 위해 참석 여부를 미리 알려주시면 감사하겠습니다.</p> <button type="button" class="rsvp-submit-btn"
+                        style="max-width: 200px;" onclick="openRSVPModal()">
                         참석 여부 전달하기
                     </button>
                 </div>
@@ -448,6 +452,34 @@
                 </form>
             </div>
         </div>
+
+        <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"></script>
+
+        <!-- SECTION 9: Share Section -->
+        <section id="share-section" class="invitation-section scroll-fade" style="text-align: center;">
+            <div class="section-divider">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"
+                        fill="var(--color-accent)" opacity="0.8" />
+                </svg>
+            </div>
+            <h3 class="section-title">초대장 공유</h3>
+            <p class="share-subtitle"
+                style="font-size: 0.95rem; color: var(--text-sub); margin-top: -20px; margin-bottom: 30px; text-align: center;">
+                카카오톡으로 편리하게 초대장을 공유해보세요.</p>
+
+            <div class="share-container" style="padding: 0 20px;">
+                <button id="kakaotalk-sharing-btn" class="share-kakao-btn">
+                    <svg class="kakao-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+                        style="margin-right: 6px; vertical-align: middle;">
+                        <path
+                            d="M12 3c-5.523 0-10 3.582-10 8 0 2.91 1.887 5.467 4.707 6.843l-.934 3.42c-.083.303.094.613.398.697.12.033.246.015.352-.05l4.03-2.483c.473.048.955.073 1.447.073 5.523 0 10-3.582 10-8s-4.477-8-10-8z" />
+                    </svg>
+                    <span>카카오톡으로 초대장 보내기</span>
+                </button>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer class="invitation-footer">
