@@ -4,44 +4,64 @@ const TARGET_DATE = new Date("2026-10-09T12:00:00+09:00");
 // Timeline Image Sources
 const TIMELINE_IMAGES = {
     '1days': [
-        'assets/cover.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/1Day/20251011.jpg',
+        'assets/1Day/20251012.jpg',
+        'assets/1Day/20251013.jpg',
+        'assets/1Day/20251029.jpg',
+        'assets/1Day/20251107.jpg'
     ],
     '50days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/50Day/20251129.jpg',
+        'assets/50Day/20251129_2.jpg',
+        'assets/50Day/20251129_3.jpg',
+        'assets/50Day/20251207.jpg',
+        'assets/50Day/20251210.jpg',
+        'assets/50Day/20251217.jpg',
+        'assets/50Day/20251219.jpg',
+        'assets/50Day/20251220.jpg'
     ],
     '100days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/100Day/20260109.jpg',
+        'assets/100Day/20260117.jpg',
+        'assets/100Day/20260118.jpg',
+        'assets/100Day/20260119.jpg',
+        'assets/100Day/20260119_2.jpg',
+        'assets/100Day/20260120.jpg'
     ],
     '150days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/150Day/20260305.jpg',
+        'assets/150Day/20260404.jpg',
+        'assets/150Day/20260406.jpg',
+        'assets/150Day/20260409.jpg',
+        'assets/150Day/20260410.jpg',
+        'assets/150Day/20260411.jpg',
+        'assets/150Day/20260419.jpg'
     ],
     '200days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/200Day/20260426.jpg',
+        'assets/200Day/20260501.jpg',
+        'assets/200Day/20260502.jpg',
+        'assets/200Day/20260509.jpg',
+        'assets/200Day/20260515.jpg',
+        'assets/200Day/20260521.jpg',
+        'assets/200Day/20260527.jpg',
+        'assets/200Day/20260529.jpg'
     ],
     '250days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/250Day/20260611.jpg',
+        'assets/250Day/20260612.jpg',
+        'assets/250Day/20260616.jpg',
+        'assets/250Day/20260617.jpg',
+        'assets/250Day/20260621.jpg',
+        'assets/250Day/20260711.jpg',
+        'assets/250Day/20260716.jpg'
     ],
     '300days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
+        'assets/300Day/20260806_1.JPG',
+        'assets/300Day/20260806_2.JPG',
+        'assets/300Day/20260810.jpg'
     ],
     '350days': [
-        'assets/gallery1.jpg',
-        'assets/gallery2.jpg',
-        'assets/gallery3.jpg'
     ],
 };
 let currentCategory = '';
