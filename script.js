@@ -992,6 +992,10 @@ function voteDoljabi(item) {
         // Add active/clicked animation class for visual feedback
         const itemEl = el.parentElement;
         itemEl.classList.add('voted-pulse');
+
+        // 이모티콘 수직 상승 이펙트 실행
+        triggerEmojiEffect(itemEl);
+
         setTimeout(() => {
             itemEl.classList.remove('voted-pulse');
         }, 500);
@@ -1013,6 +1017,27 @@ function voteDoljabi(item) {
     } else {
         alert(`시현이의 '${names[item]}'에 투표하셨습니다!`);
     }
+}
+
+// 클릭 시 해당 이모티콘을 위로 똑바로 떠오르게 하는 함수
+function triggerEmojiEffect(itemEl) {
+    if (!itemEl) return;
+
+    // 해당 카드 안의 .doljabi-icon 에서 이모티콘 텍스트 추출
+    const iconEl = itemEl.querySelector('.doljabi-icon');
+    const emojiText = iconEl ? iconEl.innerText : '✨';
+
+    // 플로팅 이모티콘 element 생성
+    const floatingEl = document.createElement('span');
+    floatingEl.classList.add('floating-emoji');
+    floatingEl.innerText = emojiText;
+
+    itemEl.appendChild(floatingEl);
+
+    // 애니메이션이 완전히 끝난 후 DOM에서 깔끔하게 제거 (0.8초 후)
+    setTimeout(() => {
+        floatingEl.remove();
+    }, 800);
 }
 
 function resetDoljabiCounts() {
@@ -1037,4 +1062,3 @@ function resetDoljabiCounts() {
         }
     }
 }
-
