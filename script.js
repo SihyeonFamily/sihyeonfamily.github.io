@@ -17,51 +17,41 @@ const TIMELINE_IMAGES = {
         'assets/50Day/20251207.jpg',
         'assets/50Day/20251210.jpg',
         'assets/50Day/20251217.jpg',
-        'assets/50Day/20251219.jpg',
         'assets/50Day/20251220.jpg'
     ],
-    '100days': [
-        'assets/100Day/20260109.jpg',
-        'assets/100Day/20260117.jpg',
+    '100days': [ // 2026.01.18
+
         'assets/100Day/20260118.jpg',
         'assets/100Day/20260119.jpg',
-        'assets/100Day/20260119_2.jpg',
-        'assets/100Day/20260120.jpg'
+        'assets/100Day/20260119_2.jpg'
     ],
-    '150days': [
+    '150days': [ // 2026.03.09
         'assets/150Day/20260305.jpg',
         'assets/150Day/20260404.jpg',
         'assets/150Day/20260406.jpg',
-        'assets/150Day/20260409.jpg',
-        'assets/150Day/20260410.jpg',
-        'assets/150Day/20260411.jpg',
-        'assets/150Day/20260419.jpg'
+        'assets/150Day/20260419.jpg',
+        'assets/150Day/20260502.jpg',
+        'assets/150Day/20260521.jpg'
     ],
-    '200days': [
-        'assets/200Day/20260426.jpg',
+    '200days': [  // 2026.04.28
+        'assets/200Day/20260411.jpg',
         'assets/200Day/20260501.jpg',
-        'assets/200Day/20260502.jpg',
-        'assets/200Day/20260509.jpg',
-        'assets/200Day/20260515.jpg',
-        'assets/200Day/20260521.jpg',
-        'assets/200Day/20260527.jpg',
         'assets/200Day/20260529.jpg'
     ],
-    '250days': [
+    '250days': [  // 2026.06.17
         'assets/250Day/20260611.jpg',
         'assets/250Day/20260612.jpg',
         'assets/250Day/20260616.jpg',
         'assets/250Day/20260617.jpg',
-        'assets/250Day/20260621.jpg',
         'assets/250Day/20260711.jpg',
         'assets/250Day/20260716.jpg'
     ],
-    '300days': [
+    '300days': [  // 2026.08.06
         'assets/300Day/20260806_1.JPG',
         'assets/300Day/20260806_2.JPG',
         'assets/300Day/20260810.jpg'
     ],
-    '350days': [
+    '350days': [  // 2026.09.29
     ],
 };
 let currentCategory = '';
