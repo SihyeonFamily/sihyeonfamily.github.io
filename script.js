@@ -127,6 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 5. Set D-day badge value on cover
     updateDDayBadge();
+
+    // 6. Initialize Doljabi prediction counts
+    initDoljabi();
 });
 
 // ==========================================
@@ -943,3 +946,105 @@ Kakao.Share.createDefaultButton({
         },
     ],
 });
+
+// ==========================================
+// Doljabi Prediction Section Logic
+// ==========================================
+
+const DOLJABI_ITEMS = ['courage', 'curiosity', 'honesty', 'wisdom', 'positivity', 'passion', 'love', 'happiness'];
+
+function initDoljabi() {
+    // Render current counts
+    const counts = getDoljabiCounts();
+    DOLJABI_ITEMS.forEach(item => {
+        const el = document.getElementById(`count-${item}`);
+        if (el) {
+            el.innerText = counts[item] || 0;
+        }
+    });
+
+    // Check admin mode via URL query parameter (e.g. ?admin=true)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true') {
+        const adminControls = document.getElementById('doljabi-admin-controls');
+        if (adminControls) {
+            adminControls.style.display = 'block';
+        }
+    }
+}
+
+function getDoljabiCounts() {
+    const counts = localStorage.getItem('sihyeon_doljabi_votes');
+    if (counts) {
+        try {
+            return JSON.parse(counts);
+        } catch (e) {
+            console.error('Error parsing doljabi counts', e);
+        }
+    }
+    // Return initial counts
+    const initialCounts = {};
+    DOLJABI_ITEMS.forEach(item => {
+        initialCounts[item] = 0;
+    });
+    return initialCounts;
+}
+
+function voteDoljabi(item) {
+    const counts = getDoljabiCounts();
+    counts[item] = (counts[item] || 0) + 1;
+    localStorage.setItem('sihyeon_doljabi_votes', JSON.stringify(counts));
+
+    // Update UI
+    const el = document.getElementById(`count-${item}`);
+    if (el) {
+        el.innerText = counts[item];
+        // Add active/clicked animation class for visual feedback
+        const itemEl = el.parentElement;
+        itemEl.classList.add('voted-pulse');
+        setTimeout(() => {
+            itemEl.classList.remove('voted-pulse');
+        }, 500);
+    }
+
+    // Show toast for feedback
+    const names = {
+        courage: '용기',
+        curiosity: '탐구심',
+        honesty: '정직',
+        wisdom: '지혜',
+        positivity: '긍정',
+        passion: '열정',
+        love: '사랑',
+        happiness: '행복'
+    };
+    if (typeof showToast === 'function') {
+        showToast(`시현이의 '${names[item]}'에 투표하셨습니다!`);
+    } else {
+        alert(`시현이의 '${names[item]}'에 투표하셨습니다!`);
+    }
+}
+
+function resetDoljabiCounts() {
+    if (confirm('모든 투표수를 초기화하시겠습니까?')) {
+        const initialCounts = {};
+        DOLJABI_ITEMS.forEach(item => {
+            initialCounts[item] = 0;
+        });
+        localStorage.setItem('sihyeon_doljabi_votes', JSON.stringify(initialCounts));
+
+        // Update UI
+        DOLJABI_ITEMS.forEach(item => {
+            const el = document.getElementById(`count-${item}`);
+            if (el) {
+                el.innerText = 0;
+            }
+        });
+        if (typeof showToast === 'function') {
+            showToast('투표수가 초기화되었습니다.');
+        } else {
+            alert('투표수가 초기화되었습니다.');
+        }
+    }
+}
+

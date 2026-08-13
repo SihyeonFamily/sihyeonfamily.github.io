@@ -301,6 +301,83 @@
             </div>
         </section>
 
+        <!-- SECTION: Doljabi Prediction -->
+        <section id="doljabi-section" class="invitation-section scroll-fade">
+            <div class="section-divider">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                        fill="var(--color-accent)" opacity="0.8" />
+                </svg>
+            </div>
+            <h3 class="section-title">시현이는 무엇을 잡을까?</h3>
+            <p class="doljabi-subtitle" style="font-size: 0.95rem; color: var(--text-sub); margin-top: -20px; margin-bottom: 30px; text-align: center;">시현이가 가치 돌잡이로 잡을 것 같은 항목에 투표해주세요.</p>
+
+            <div class="doljabi-grid">
+                <div class="doljabi-item" onclick="voteDoljabi('courage')">
+                    <button class="doljabi-btn btn-courage" aria-label="용기 투표하기">
+                        <span class="doljabi-icon">🦁</span>
+                    </button>
+                    <span class="doljabi-name">용기</span>
+                    <span class="doljabi-count" id="count-courage">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('curiosity')">
+                    <button class="doljabi-btn btn-curiosity" aria-label="탐구심 투표하기">
+                        <span class="doljabi-icon">🔍</span>
+                    </button>
+                    <span class="doljabi-name">탐구심</span>
+                    <span class="doljabi-count" id="count-curiosity">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('honesty')">
+                    <button class="doljabi-btn btn-honesty" aria-label="정직 투표하기">
+                        <span class="doljabi-icon">🪞</span>
+                    </button>
+                    <span class="doljabi-name">정직</span>
+                    <span class="doljabi-count" id="count-honesty">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('wisdom')">
+                    <button class="doljabi-btn btn-wisdom" aria-label="지혜 투표하기">
+                        <span class="doljabi-icon">📖</span>
+                    </button>
+                    <span class="doljabi-name">지혜</span>
+                    <span class="doljabi-count" id="count-wisdom">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('positivity')">
+                    <button class="doljabi-btn btn-positivity" aria-label="긍정 투표하기">
+                        <span class="doljabi-icon">😊</span>
+                    </button>
+                    <span class="doljabi-name">긍정</span>
+                    <span class="doljabi-count" id="count-positivity">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('passion')">
+                    <button class="doljabi-btn btn-passion" aria-label="열정 투표하기">
+                        <span class="doljabi-icon">🔥</span>
+                    </button>
+                    <span class="doljabi-name">열정</span>
+                    <span class="doljabi-count" id="count-passion">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('love')">
+                    <button class="doljabi-btn btn-love" aria-label="사랑 투표하기">
+                        <span class="doljabi-icon">❤️</span>
+                    </button>
+                    <span class="doljabi-name">사랑</span>
+                    <span class="doljabi-count" id="count-love">0</span>
+                </div>
+                <div class="doljabi-item" onclick="voteDoljabi('happiness')">
+                    <button class="doljabi-btn btn-happiness" aria-label="행복 투표하기">
+                        <span class="doljabi-icon">🌈</span>
+                    </button>
+                    <span class="doljabi-name">행복</span>
+                    <span class="doljabi-count" id="count-happiness">0</span>
+                </div>
+            </div>
+
+            <!-- Admin Controls -->
+            <div id="doljabi-admin-controls" class="doljabi-admin-controls" style="display: none;">
+                <button class="btn-reset-doljabi" onclick="resetDoljabiCounts()">투표수 초기화 🔄</button>
+            </div>
+        </section>
+
         <!-- SECTION 5: Live Countdown -->
         <section id="countdown-section" class="invitation-section scroll-fade">
             <h3 class="section-title">만나기까지 남은 시간</h3>
