@@ -755,9 +755,6 @@ body {
     background-color: var(--bg-white);
 }
 
-#rsvp-section {
-    background-color: var(--bg-white);
-}
 
 #share-section {
     background-color: var(--bg-white);
@@ -1090,6 +1087,35 @@ body {
     font-size: 0.85rem;
     color: var(--text-sub);
     line-height: 1.5;
+}
+
+.venue-rsvp {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px dashed var(--color-border);
+    width: 100%;
+    text-align: center;
+}
+
+.venue-rsvp-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.venue-rsvp-desc {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.venue-rsvp .rsvp-submit-btn {
+    max-width: 240px;
+    margin: 0 auto;
+    display: block;
 }
 
 
@@ -2023,7 +2049,6 @@ body {
 }
 
 /* Adjust Spacing for RSVP and Share Section */
-#rsvp-section,
 #share-section {
     padding-top: 40px;
     padding-bottom: 40px;

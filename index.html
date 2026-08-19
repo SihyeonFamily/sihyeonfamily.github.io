@@ -132,7 +132,18 @@
                     <p class="traffic-desc">호텔 내 지하 주차장 무료 이용 (안내 데스크 또는 다이닝 100에서 주차 등록 필요)</p>
                 </div>
             </div>
+
+            <!-- RSVP Sub-section -->
+            <div class="venue-rsvp">
+                <h4 class="venue-rsvp-title">참석 의사 전달 안내</h4>
+                <p class="venue-rsvp-desc">정성껏 모시기 위해 참석 의사를 미리 알려주시면 감사하겠습니다.</p>
+                <button type="button" class="rsvp-submit-btn" onclick="openRSVPModal()">
+                    참석 의사 전달하기
+                </button>
+            </div>
         </section>
+
+
 
         <!-- SECTION4: Growth Timeline -->
         <section id="timeline-section" class="invitation-section scroll-fade">
@@ -459,34 +470,12 @@
             </div>
         </section>
 
-        <!-- SECTION 7: RSVP -->
-        <section id="rsvp-section" class="invitation-section scroll-fade">
-            <div class="section-divider">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                        fill="var(--color-accent)" opacity="0.8" />
-                </svg>
-            </div>
-
-            <div class="container">
-                <div style="text-align: center; padding: 10px 20px 0 20px;">
-                    <h3 class="section-title">참석 여부 전달</h3>
-                    <p class="share-subtitle"
-                        style="font-size: 0.95rem; color: var(--text-sub); margin-top: -20px; margin-bottom: 30px; text-align: center;">
-                        정성껏 모시기 위해 참석 여부를 미리 알려주시면 감사하겠습니다.</p> <button type="button" class="rsvp-submit-btn"
-                        style="max-width: 200px;" onclick="openRSVPModal()">
-                        참석 여부 전달하기
-                    </button>
-                </div>
-            </div>
-        </section>
 
         <!-- RSVP Modal -->
         <div id="rsvp-modal" class="modal" onclick="closeRSVPModal(event)">
             <div class="modal-content">
                 <span class="modal-close" onclick="closeRSVPModal(event)">&times;</span>
-                <h3 class="modal-title">참석 여부 전달</h3>
+                <h3 class="modal-title">참석 의사 전달</h3>
 
                 <form id="rsvp-form" onsubmit="submitRSVP(event)">
                     <!-- 성함 입력 -->
