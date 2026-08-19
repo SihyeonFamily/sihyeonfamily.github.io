@@ -36,7 +36,8 @@ const TIMELINE_IMAGES = {
     '200days': [  // 2026.04.28
         'assets/200Day/20260411.jpg',
         'assets/200Day/20260501.jpg',
-        'assets/200Day/20260529.jpg'
+        'assets/200Day/20260529.jpg',
+        'assets/200Day/20260727.jpg'
     ],
     '250days': [  // 2026.06.17
         'assets/250Day/20260611.jpg',
