@@ -1030,23 +1030,46 @@ Kakao.Share.createDefaultButton({
 
 const DOLJABI_ITEMS = ['courage', 'curiosity', 'honesty', 'wisdom', 'positivity', 'passion', 'love', 'happiness'];
 
-function initDoljabi() {
-    // Render current counts
-    const counts = getDoljabiCounts();
-    DOLJABI_ITEMS.forEach(item => {
-        const el = document.getElementById(`count-${item}`);
-        if (el) {
-            el.innerText = counts[item] || 0;
-        }
-    });
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAmaLql1yzfGCqxBAd76O4sH7ZTvEUZI7M",
+    authDomain: "sihyeonfamily-554fa.firebaseapp.com",
+    databaseURL: "https://sihyeonfamily-554fa-default-rtdb.firebaseio.com",
+    projectId: "sihyeonfamily-554fa",
+    storageBucket: "sihyeonfamily-554fa.firebasestorage.app",
+    messagingSenderId: "767453998390",
+    appId: "1:767453998390:web:e951441eee50ac83c1d797"
+};
 
-    // Check admin mode via URL query parameter (e.g. ?admin=true)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('admin') === 'true') {
-        const adminControls = document.getElementById('doljabi-admin-controls');
-        if (adminControls) {
-            adminControls.style.display = 'block';
-        }
+let database = null;
+
+// Initialize Firebase if configured
+if (typeof firebase !== 'undefined' && firebaseConfig.apiKey !== "AIzaSyAmaLql1yzfGCqxBAd76O4sH7ZTvEUZI7M") {
+    firebase.initializeApp(firebaseConfig);
+    database = firebase.database();
+}
+
+function initDoljabi() {
+    if (database) {
+        // Real-time synchronization from Firebase
+        database.ref('sihyeon_doljabi_votes').on('value', (snapshot) => {
+            const counts = snapshot.val() || {};
+            DOLJABI_ITEMS.forEach(item => {
+                const el = document.getElementById(`count-${item}`);
+                if (el) {
+                    el.innerText = counts[item] || 0;
+                }
+            });
+        });
+    } else {
+        // Render current counts from LocalStorage (Fallback)
+        const counts = getDoljabiCounts();
+        DOLJABI_ITEMS.forEach(item => {
+            const el = document.getElementById(`count-${item}`);
+            if (el) {
+                el.innerText = counts[item] || 0;
+            }
+        });
     }
 }
 
@@ -1068,15 +1091,27 @@ function getDoljabiCounts() {
 }
 
 function voteDoljabi(item) {
-    const counts = getDoljabiCounts();
-    counts[item] = (counts[item] || 0) + 1;
-    localStorage.setItem('sihyeon_doljabi_votes', JSON.stringify(counts));
+    if (database) {
+        // Real-time Database transaction to increment vote count
+        database.ref(`sihyeon_doljabi_votes/${item}`).transaction((currentCount) => {
+            return (currentCount || 0) + 1;
+        });
+    } else {
+        // Fallback: LocalStorage
+        const counts = getDoljabiCounts();
+        counts[item] = (counts[item] || 0) + 1;
+        localStorage.setItem('sihyeon_doljabi_votes', JSON.stringify(counts));
 
-    // Update UI
+        // Update UI manually for LocalStorage fallback
+        const el = document.getElementById(`count-${item}`);
+        if (el) {
+            el.innerText = counts[item];
+        }
+    }
+
+    // Maintain visual feedback and effects
     const el = document.getElementById(`count-${item}`);
     if (el) {
-        el.innerText = counts[item];
-        // Add active/clicked animation class for visual feedback
         const itemEl = el.parentElement;
         itemEl.classList.add('voted-pulse');
 
@@ -1127,28 +1162,6 @@ function triggerEmojiEffect(itemEl) {
     }, 800);
 }
 
-function resetDoljabiCounts() {
-    if (confirm('모든 투표수를 초기화하시겠습니까?')) {
-        const initialCounts = {};
-        DOLJABI_ITEMS.forEach(item => {
-            initialCounts[item] = 0;
-        });
-        localStorage.setItem('sihyeon_doljabi_votes', JSON.stringify(initialCounts));
-
-        // Update UI
-        DOLJABI_ITEMS.forEach(item => {
-            const el = document.getElementById(`count-${item}`);
-            if (el) {
-                el.innerText = 0;
-            }
-        });
-        if (typeof showToast === 'function') {
-            showToast('투표수가 초기화되었습니다.');
-        } else {
-            alert('투표수가 초기화되었습니다.');
-        }
-    }
-}
 
 // ------------------------------------------
 // Block context menu (right click) on images to prevent saving
