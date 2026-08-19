@@ -1082,6 +1082,10 @@ body {
     background-color: var(--color-accent);
 }
 
+.traffic-type.parking {
+    background-color: var(--color-accent);
+}
+
 .traffic-desc {
     font-size: 0.85rem;
     color: var(--text-sub);
