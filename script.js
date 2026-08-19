@@ -918,9 +918,9 @@ Kakao.Share.createDefaultButton({
     container: '#kakaotalk-sharing-btn',
     objectType: 'feed',
     content: {
-        title: '시현이의 첫번째 생일에 초대합니다 👶',
+        title: '시현이의 첫번째 생일에 초대합니다.',
         description: '2026년 10월 9일 (금) 오후 12시\n위례 밀리토피아호텔 바이마린 다이닝100',
-        imageUrl: 'https://sihyeonfamily.github.io/assets/cover.jpg', // 대표 사진 URL
+        imageUrl: 'https://sihyeonfamily.github.io/assets/cover_preview.png', // 대표 사진 URL
         link: {
             mobileWebUrl: 'https://sihyeonfamily.github.io',
             webUrl: 'https://sihyeonfamily.github.io',
