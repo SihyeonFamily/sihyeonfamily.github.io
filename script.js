@@ -348,29 +348,38 @@ document.addEventListener('DOMContentLoaded', function () {
         const category = swiperContainer.getAttribute('data-category');
         const wrapper = swiperContainer.querySelector('.swiper-wrapper');
 
-        // 해당 카테고리의 이미지 배열이 존재할 경우 슬라이드 HTML 자동 생성
-        if (TIMELINE_IMAGES[category] && wrapper) {
+        // 해당 카테고리의 이미지 배열이 존재하고 이미지가 한 개 이상 있을 경우 슬라이드 생성
+        if (TIMELINE_IMAGES[category] && TIMELINE_IMAGES[category].length > 0 && wrapper) {
             TIMELINE_IMAGES[category].forEach(function (imgSrc, index) {
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
                 slide.innerHTML = `<img src="${imgSrc}" alt="${category} 사진 ${index + 1}" style="cursor: pointer;" onclick="openLightbox('${category}', ${index})">`;
                 wrapper.appendChild(slide);
             });
-        }
 
-        // 이미지 생성이 끝난 후 Swiper 슬라이더 초기화
-        new Swiper(swiperContainer, {
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: swiperContainer.querySelector('.swiper-pagination'),
-                clickable: true,
-            },
-            speed: 500,
-        });
+            // 이미지 생성이 끝난 후 Swiper 슬라이더 초기화
+            new Swiper(swiperContainer, {
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: swiperContainer.querySelector('.swiper-pagination'),
+                    clickable: true,
+                },
+                speed: 500,
+            });
+        } else {
+            // 이미지가 없는 경우 placeholder 형식으로 노출
+            swiperContainer.classList.add('empty-placeholder');
+            swiperContainer.innerHTML = `
+                <div class="empty-placeholder-content">
+                    <span class="placeholder-icon">📸</span>
+                    <span>사진 준비 중입니다</span>
+                </div>
+            `;
+        }
     });
 });
 
