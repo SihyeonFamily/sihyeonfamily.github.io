@@ -624,16 +624,12 @@
         <!-- 닫기 버튼 (&times; 는 X 모양 기호입니다) -->
         <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
 
-        <!-- 이전 버튼 (&#10094; 는 < 모양 화살표 기호입니다) -->
-        <button class="lightbox-nav prev" onclick="navigateLightbox(-1, event)">&#10094;</button>
-
-        <!-- 이미지 컨테이너 -->
-        <div class="lightbox-content-container">
+        <!-- 이미지 및 정보를 포함하는 컨테이너 -->
+        <div class="lightbox-content-container" onclick="event.stopPropagation()">
             <img id="lightbox-img" class="lightbox-img" src="" alt="확대 사진">
+            <!-- 하단 정보 표시 영역 -->
+            <div id="lightbox-status" class="lightbox-status"></div>
         </div>
-
-        <!-- 다음 버튼 (&#10095; 는 > 모양 화살표 기호입니다) -->
-        <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">&#10095;</button>
     </div>
 
 </body>
