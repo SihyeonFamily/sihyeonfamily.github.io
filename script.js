@@ -1044,7 +1044,7 @@ const firebaseConfig = {
 let database = null;
 
 // Initialize Firebase if configured
-if (typeof firebase !== 'undefined' && firebaseConfig.apiKey !== "AIzaSyAmaLql1yzfGCqxBAd76O4sH7ZTvEUZI7M") {
+if (typeof firebase !== 'undefined') {
     firebase.initializeApp(firebaseConfig);
     database = firebase.database();
 }
