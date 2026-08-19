@@ -221,10 +221,14 @@ function initScrollAnimations() {
 }
 
 // ==========================================
-// 3. PHOTO GALLERY LIGHTBOX
+// 3. PHOTO GALLERY / TIMELINE LIGHTBOX
 // ==========================================
+// We support both GALLERY_IMAGES (if exists) and TIMELINE_IMAGES
+const LIGHTBOX_SOURCES = typeof GALLERY_IMAGES !== 'undefined' ? GALLERY_IMAGES : TIMELINE_IMAGES;
+
 function openLightbox(category, index = 0) {
-    if (!GALLERY_IMAGES[category] || GALLERY_IMAGES[category].length === 0) return;
+    const images = LIGHTBOX_SOURCES[category];
+    if (!images || images.length === 0) return;
 
     currentCategory = category;
     currentLightboxIndex = index;
@@ -232,24 +236,44 @@ function openLightbox(category, index = 0) {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
 
-    lightboxImg.src = GALLERY_IMAGES[currentCategory][currentLightboxIndex];
+    lightboxImg.src = images[currentLightboxIndex];
     lightbox.style.display = "flex";
     document.body.style.overflow = "hidden"; // Prevent background scroll
+
+    // Push a state into history so that back button can close it
+    window.history.pushState({ lightboxOpen: true }, "");
 }
 
 function closeLightbox(event) {
-    // Closes lightbox if clicking backdrop, close symbol or backdrop container
-    if (!event || event.target.id === "lightbox" || event.target.className === "lightbox-close" || event.type === "submit") {
+    // Closes lightbox if clicking backdrop, close symbol, or custom event, or manual close
+    if (!event || event.target.id === "lightbox" || event.target.className === "lightbox-close" || event.type === "submit" || event === true) {
         const lightbox = document.getElementById("lightbox");
+        if (lightbox && lightbox.style.display !== "none") {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "auto";
+            
+            // If closed by X or backdrop, check if we need to pop history
+            if (window.history.state && window.history.state.lightboxOpen) {
+                window.history.back();
+            }
+        }
+    }
+}
+
+// Popstate listener to handle back button behavior
+window.addEventListener("popstate", function (event) {
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox && lightbox.style.display !== "none") {
+        // Close the lightbox without triggers that loop back history
         lightbox.style.display = "none";
         document.body.style.overflow = "auto";
     }
-}
+});
 
 function navigateLightbox(direction, event) {
     if (event) event.stopPropagation(); // Avoid triggering closeLightbox
 
-    const images = GALLERY_IMAGES[currentCategory];
+    const images = LIGHTBOX_SOURCES[currentCategory];
     if (!images) return;
 
     currentLightboxIndex += direction;
@@ -276,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function () {
             TIMELINE_IMAGES[category].forEach(function (imgSrc, index) {
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide';
-                slide.innerHTML = `<img src="${imgSrc}" alt="${category} 사진 ${index + 1}">`;
+                slide.innerHTML = `<img src="${imgSrc}" alt="${category} 사진 ${index + 1}" style="cursor: pointer;" onclick="openLightbox('${category}', ${index})">`;
                 wrapper.appendChild(slide);
             });
         }
@@ -1063,3 +1087,13 @@ function resetDoljabiCounts() {
         }
     }
 }
+
+// ------------------------------------------
+// Block context menu (right click) on images to prevent saving
+// ------------------------------------------
+document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG' || e.target.closest('.lightbox-modal') || e.target.closest('.swiper-slide')) {
+        e.preventDefault();
+    }
+});
+
