@@ -223,8 +223,13 @@ function initScrollAnimations() {
 // ==========================================
 // 3. PHOTO GALLERY / TIMELINE LIGHTBOX
 // ==========================================
+// 3. PHOTO GALLERY / TIMELINE LIGHTBOX
+// ==========================================
 // We support both GALLERY_IMAGES (if exists) and TIMELINE_IMAGES
 const LIGHTBOX_SOURCES = typeof GALLERY_IMAGES !== 'undefined' ? GALLERY_IMAGES : TIMELINE_IMAGES;
+
+let touchStartX = 0;
+let touchEndX = 0;
 
 function openLightbox(category, index = 0) {
     const images = LIGHTBOX_SOURCES[category];
@@ -240,8 +245,47 @@ function openLightbox(category, index = 0) {
     lightbox.style.display = "flex";
     document.body.style.overflow = "hidden"; // Prevent background scroll
 
+    updateLightboxStatus();
+
     // Push a state into history so that back button can close it
     window.history.pushState({ lightboxOpen: true }, "");
+
+    // Add Swipe Event Listeners to Lightbox Container
+    lightbox.addEventListener('touchstart', handleTouchStart, { passive: true });
+    lightbox.addEventListener('touchend', handleTouchEnd, { passive: true });
+}
+
+function updateLightboxStatus() {
+    const images = LIGHTBOX_SOURCES[currentCategory];
+    const statusEl = document.getElementById("lightbox-status");
+    if (images && statusEl) {
+        statusEl.innerHTML = `
+            <button class="lightbox-status-btn" onclick="navigateLightbox(-1, event)">&lt;</button>
+            <span class="lightbox-status-text">${currentLightboxIndex + 1} / ${images.length}</span>
+            <button class="lightbox-status-btn" onclick="navigateLightbox(1, event)">&gt;</button>
+        `;
+    }
+}
+
+
+function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50; // minimum distance to travel to trigger swipe
+    if (touchStartX - touchEndX > swipeThreshold) {
+        // Swipe left -> Next image
+        navigateLightbox(1);
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+        // Swipe right -> Prev image
+        navigateLightbox(-1);
+    }
 }
 
 function closeLightbox(event) {
@@ -251,7 +295,11 @@ function closeLightbox(event) {
         if (lightbox && lightbox.style.display !== "none") {
             lightbox.style.display = "none";
             document.body.style.overflow = "auto";
-            
+
+            // Clean up touch event listeners
+            lightbox.removeEventListener('touchstart', handleTouchStart);
+            lightbox.removeEventListener('touchend', handleTouchEnd);
+
             // If closed by X or backdrop, check if we need to pop history
             if (window.history.state && window.history.state.lightboxOpen) {
                 window.history.back();
@@ -267,6 +315,8 @@ window.addEventListener("popstate", function (event) {
         // Close the lightbox without triggers that loop back history
         lightbox.style.display = "none";
         document.body.style.overflow = "auto";
+        lightbox.removeEventListener('touchstart', handleTouchStart);
+        lightbox.removeEventListener('touchend', handleTouchEnd);
     }
 });
 
@@ -285,7 +335,10 @@ function navigateLightbox(direction, event) {
 
     const lightboxImg = document.getElementById("lightbox-img");
     lightboxImg.src = images[currentLightboxIndex];
+
+    updateLightboxStatus();
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const timelineSwipers = document.querySelectorAll('.timelineSwiper');
@@ -1091,7 +1144,7 @@ function resetDoljabiCounts() {
 // ------------------------------------------
 // Block context menu (right click) on images to prevent saving
 // ------------------------------------------
-document.addEventListener('contextmenu', function(e) {
+document.addEventListener('contextmenu', function (e) {
     if (e.target.tagName === 'IMG' || e.target.closest('.lightbox-modal') || e.target.closest('.swiper-slide')) {
         e.preventDefault();
     }
