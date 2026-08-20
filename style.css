@@ -1045,6 +1045,7 @@ body {
 
 .traffic-info {
     width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -1052,6 +1053,7 @@ body {
     padding: 20px;
     border-radius: 12px;
     border: 1px solid var(--color-border);
+    box-sizing: border-box;
 }
 
 .traffic-row {
@@ -1066,19 +1068,13 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     color: #FFFFFF;
-    margin-right: 12px;
+    margin-right: 10px;
     flex-shrink: 0;
     margin-top: 2px;
 }
 
-.traffic-type.subway {
-    background-color: var(--color-accent);
-}
-
-.traffic-type.bus {
-    background-color: var(--color-accent);
-}
-
+.traffic-type.subway,
+.traffic-type.bus,
 .traffic-type.parking {
     background-color: var(--color-accent);
 }
@@ -1087,6 +1083,17 @@ body {
     font-size: 0.85rem;
     color: var(--text-sub);
     line-height: 1.5;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    word-break: keep-all;
+}
+
+.traffic-desc .notice {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: #888888;
+    margin-top: 2px;
 }
 
 .venue-rsvp {
