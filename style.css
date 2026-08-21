@@ -835,6 +835,24 @@ body {
 
 .cover-info {
     font-family: var(--font-heading);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; /* 텍스트 간격 정돈 */
+}
+
+.cover-info .event-date,
+.cover-info .event-venue {
+    margin: 0;
+    color: var(--text-main);
+}
+
+.cover-info .entry-time {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-top: 2px;
+    font-weight: 400;
+    word-break: keep-all;
 }
 
 .event-date {
@@ -1062,15 +1080,18 @@ body {
 }
 
 .traffic-type {
-    display: inline-block;
-    padding: 2px 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 24px;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
     color: #FFFFFF;
-    margin-right: 10px;
+    margin-right: 12px;
     flex-shrink: 0;
-    margin-top: 2px;
+    padding: 0;
 }
 
 .traffic-type.subway,
