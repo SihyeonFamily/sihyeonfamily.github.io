@@ -52,7 +52,11 @@ const TIMELINE_IMAGES = {
         'assets/300Day/20260806_2.JPG',
         'assets/300Day/20260810.jpg'
     ],
-    '350days': [  // 2026.09.29
+    '350days': [  // 2026.09.25
+        'assets/350Day/20260925_1.jpg',
+        'assets/350Day/20260925_2.jpg',
+        'assets/350Day/20260925_3.jpg',
+        'assets/350Day/20260925_5.jpg'
     ],
 };
 let currentCategory = '';
